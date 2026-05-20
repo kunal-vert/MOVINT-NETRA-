@@ -1,7 +1,18 @@
-import Dashboard from "./components/dashboard/dashboard.jsx";
+import React from 'react'
 
-function App() {
-  return <Dashboard />;
+const App = () => {
+  return (
+    <div>
+      <div className='header'>
+        <div>
+          <p>MOVINT
+           
+          </p>
+          
+        </div>
+      </div>
+    </div>
+  )
 }
 
-export default App;
+export default App
