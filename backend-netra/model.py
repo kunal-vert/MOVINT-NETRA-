@@ -15,7 +15,7 @@ class Foreign_National(Base):
     full_name:         Mapped[str]        = mapped_column(String(100), nullable=False)
     nationality:       Mapped[str]        = mapped_column(String(60),  nullable=False)
     gender:            Mapped[str]        = mapped_column(String(10),  nullable=False, default="Unknown")
-    date_of_birth:     Mapped[date]        = mapped_column(Date,        nullable=False)
+    date_of_birth:     Mapped[str]        = mapped_column(Date,        nullable=False)
     passport_expiry:   Mapped[str]        = mapped_column(Date,        nullable=False)
     occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)
 
@@ -51,7 +51,7 @@ class Foreign_National(Base):
     class Visit_History:
         __tablename__ = "visit_history"
 
-        visit_id: Mapped[int]   =  = mapped_column(Integer, primary_key=True, index=True)
+        visit_id: Mapped[int]   =   mapped_column(Integer, primary_key=True, index=True)
     passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
     ilp_permit_id: Mapped[str | None] = mapped_column(ForeignKey("ilp_permits.ilp_permit_id"),    nullable=True,  index=True)
 
@@ -66,7 +66,6 @@ class Foreign_National(Base):
     exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
     duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
     visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
-    # need to change into Integer
     overstayed:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=False)
     is_current:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=True)
     notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
