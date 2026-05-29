@@ -48,6 +48,29 @@ class Foreign_National(Base):
     )
 
     #------Relationships---------------------
+    class Visit_History:
+        __tablename__ = "visit_history"
+
+        visit_id: Mapped[int]   =  = mapped_column(Integer, primary_key=True, index=True)
+    passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
+    ilp_permit_id: Mapped[str | None] = mapped_column(ForeignKey("ilp_permits.ilp_permit_id"),    nullable=True,  index=True)
+
+    # ── For chip display on Visit History page ─────────────────
+    visit_year:    Mapped[int | None] = mapped_column(Integer,     nullable=True)   # "2021"
+    state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
+
+    city:          Mapped[str]        = mapped_column(String(100), nullable=False)
+    area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
+    entry_point:   Mapped[str | None] = mapped_column(String(200), nullable=True)
+    entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
+    exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
+    duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
+    visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
+    # need to change into Integer
+    overstayed:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=False)
+    is_current:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=True)
+    notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
+
 
     
 
