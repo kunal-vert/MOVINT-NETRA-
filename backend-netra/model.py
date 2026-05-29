@@ -15,7 +15,7 @@ class Foreign_National(Base):
     full_name:         Mapped[str]        = mapped_column(String(100), nullable=False)
     nationality:       Mapped[str]        = mapped_column(String(60),  nullable=False)
     gender:            Mapped[str]        = mapped_column(String(10),  nullable=False, default="Unknown")
-    date_of_birth:     Mapped[str]        = mapped_column(Date,        nullable=False)
+    date_of_birth:     Mapped[date]        = mapped_column(Date,        nullable=False)
     passport_expiry:   Mapped[str]        = mapped_column(Date,        nullable=False)
     occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)
 
