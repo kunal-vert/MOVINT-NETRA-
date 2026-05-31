@@ -73,6 +73,8 @@ class Foreign_National(Base):
 
     # visit history of nationals means if they ever came to this region then we will have the data bout them
     class Visit_History(Base):
+        visit_id:      Mapped[int]        = mapped_column(Integer, primary_key=True, index=True)
+        passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
         
 
 
