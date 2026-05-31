@@ -71,6 +71,12 @@ class Foreign_National(Base):
     notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
 
 
+    # visit history of nationals means if they ever came to this region then we will have the data bout them
+    class Visit_History(Base):
+        
+
+
+
     
 
 
