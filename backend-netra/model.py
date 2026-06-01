@@ -77,6 +77,10 @@ class Foreign_National(Base):
         passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
         
 
+         # ── For chip display on Visit History page ─────────────────
+        visit_year:    Mapped[int | None] = mapped_column(Integer,     nullable=True)   # "2021"
+        state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
+
 
 
     
