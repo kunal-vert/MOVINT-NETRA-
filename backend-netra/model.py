@@ -82,6 +82,14 @@ class Foreign_National(Base):
         state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
         city:          Mapped[str]        = mapped_column(String(100), nullable=False)
         area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
+        entry_point:   Mapped[str | None] = mapped_column(String(200), nullable=True)
+        entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
+        exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
+        duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
+        visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
+        overstayed:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=False)
+        is_current:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=True)
+        notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
 
 
 
