@@ -80,6 +80,8 @@ class Foreign_National(Base):
          # ── For chip display on Visit History page ─────────────────
         visit_year:    Mapped[int | None] = mapped_column(Integer,     nullable=True)   # "2021"
         state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
+        city:          Mapped[str]        = mapped_column(String(100), nullable=False)
+        area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
 
 
 
