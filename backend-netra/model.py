@@ -92,6 +92,17 @@ class Foreign_National(Base):
         notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
 
 
+         # ── Relationships ─────────────────────────────────────────
+    national:   Mapped[Foreign_National]           = relationship(back_populates="visits")
+    # ilp_permit: Mapped[IlpPermit | None]          = relationship(back_populates="visits")
+    tracking:   Mapped[list[LocationTracking]]    = relationship(
+        back_populates="visit",
+        cascade="all, delete-orphan",
+        order_by="LocationTracking.logged_at"
+    )
+
+
+
 
     
 
