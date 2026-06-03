@@ -170,3 +170,39 @@ body {
     display: flex;
     gap: 12px;
 }
+
+.footer {
+    background-color: #4d5258;
+    border: 2px solid black;
+    width: 96%;
+    height: 70px;
+    padding: 10px;
+    /* margin: -1px -1px; */
+    margin-left: 20px;
+    margin-bottom: 20px;
+    position: relative;
+    border-radius: 7px;
+    color: #9cb0e7;
+}
+
+.submit {
+    display: flex;
+    justify-content: space-between;
+}
+
+.submit button {
+    cursor: pointer;
+
+    padding: 8px;
+    color: #131829;
+    background-color: #6e6765;
+    border-radius: 7px;
+
+}
+
+.icon-submit img {
+    width: 29px;
+    height: 33px;
+
+
+}

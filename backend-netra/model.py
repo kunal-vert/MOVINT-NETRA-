@@ -32,10 +32,10 @@ class Foreign_National(Base):
         String(200), nullable=False,
         default="Netaji Subhas Chandra Bose International Airport, Kolkata"
     )
-    destination_state: Mapped[str | None] = mapped_column(String(100), nullable=True)
-    destination_city:  Mapped[str | None] = mapped_column(String(100), nullable=True)
-    hotel_name:        Mapped[str | None] = mapped_column(String(200), nullable=True)
-    employer_org:      Mapped[str | None] = mapped_column(String(200), nullable=True)
+    # destination_state: Mapped[str | None] = mapped_column(String(100), nullable=True)
+    # destination_city:  Mapped[str | None] = mapped_column(String(100), nullable=True)
+    # hotel_name:        Mapped[str | None] = mapped_column(String(200), nullable=True)
+    # employer_org:      Mapped[str | None] = mapped_column(String(200), nullable=True)
 
     # >>>>>>>>>>>>> NE Summary >>>> This will give the and provide the Anomloy detection later---------
 
