@@ -46,7 +46,19 @@ const Entryform = () => {
                         <div className="field-row">
                             <div className="field">
                                 <label>Nationality</label>
-                                <select><option>Select...</option></select>
+                                <select>    <option value="">Select...</option>
+                                    <option>Chinese</option>
+                                    <option>Bangladeshi</option>
+                                    <option>Myanmar</option>
+                                    <option>Pakistani</option>
+                                    <option>Thai</option>
+                                    <option>Myanmarese</option>
+                                    <option>American</option>
+                                    <option>British</option>
+                                    <option>Japanese</option>
+                                    <option>South Korean</option>
+                                    <option>Nepali</option>
+                                    <option>Sri Lankan</option></select>
                             </div>
                             <div className="field">
                                 <label>Gender</label>
@@ -69,6 +81,10 @@ const Entryform = () => {
                                     <option>Tourist</option>
                                     <option>Business</option>
                                     <option>Student</option>
+
+                                    <option>Research</option>
+                                    <option>Diplomatic</option>
+                                    <option>Transit</option>
                                 </select>
                             </div>
                         </div>
