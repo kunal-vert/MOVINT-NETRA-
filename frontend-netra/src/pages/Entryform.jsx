@@ -142,7 +142,7 @@ const Entryform = () => {
             <div className="footer">
                 <div className="submit">
                     <h1>Submitting as: DGCA officer
-</h1>
+                    </h1>
                     <button className="icon-submit">
                         <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/submit-icon-svg-download-png-3154183.png?f=webp&w=256" alt="" /></button>
                 </div>

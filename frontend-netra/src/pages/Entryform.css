@@ -173,7 +173,7 @@ body {
 
 .footer {
     background-color: #4d5258;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     width: 96%;
     height: 70px;
     padding: 10px;
@@ -183,6 +183,8 @@ body {
     position: relative;
     border-radius: 7px;
     color: #9cb0e7;
+    font-weight: 600;
+    font-size: larger;
 }
 
 .submit {
@@ -205,4 +207,15 @@ body {
     height: 33px;
 
 
+}
+
+.icon-submit:hover {
+    background-color: #7d7572;
+    transition: all 0.1s ease;
+    cursor: pointer;
+}
+
+.icon-submit:hover img {
+    transform: scale(1.08);
+    transition: transform 0.2s ease;
 }
