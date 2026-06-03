@@ -1,0 +1,172 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0c0c0c;
+    color: white;
+    font-family: 'Segoe UI', sans-serif;
+}
+
+.header {
+    background-color: red;
+    padding: 16px 20px;
+}
+
+.content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.check-layer {
+    padding: 16px 20px;
+}
+
+.operating {
+    color: gray;
+    font-size: 13px;
+    margin-bottom: 10px;
+}
+
+.check-post {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.check-post span {
+    display: inline-block;
+    padding: 8px 14px;
+    border-radius: 6px;
+    border: 1.5px solid #444;
+    font-size: 13px;
+    color: #ccc;
+    cursor: pointer;
+}
+
+.check-post span.active {
+    border-color: #4a90e2;
+    color: #4a90e2;
+    background-color: rgba(74, 144, 226, 0.1);
+}
+
+.form-layer {
+    padding: 0 20px 30px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.passport-section {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 20px;
+}
+
+.section-label {
+    font-size: 11px;
+    color: #6b7280;
+    letter-spacing: 0.08em;
+    margin-bottom: 14px;
+}
+
+.passport-row {
+    display: flex;
+    gap: 12px;
+    align-items: center;
+}
+
+.passport-row input {
+    flex: 1;
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    padding: 10px 14px;
+    color: white;
+    font-size: 14px;
+    outline: none;
+}
+
+.passport-row input::placeholder {
+    color: #6b7280;
+}
+
+.check-btn {
+    background-color: #2563eb;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    padding: 10px 20px;
+    font-size: 14px;
+    cursor: pointer;
+    white-space: nowrap;
+}
+
+.check-btn:hover {
+    background-color: #1d4ed8;
+}
+
+.details-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+}
+
+.form-card {
+    background-color: #111827;
+    border: 1px solid #1f2937;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+}
+
+.card-title {
+    font-size: 11px;
+    color: #6b7280;
+    letter-spacing: 0.08em;
+}
+
+.field {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    flex: 1;
+}
+
+.field label {
+    font-size: 12px;
+    color: #9ca3af;
+}
+
+.field input,
+.field select {
+    background-color: #1f2937;
+    border: 1px solid #374151;
+    border-radius: 6px;
+    padding: 9px 12px;
+    color: white;
+    font-size: 13px;
+    outline: none;
+    width: 100%;
+}
+
+.field input::placeholder {
+    color: #4b5563;
+}
+
+.field select option {
+    background-color: #1f2937;
+}
+
+.field-row {
+    display: flex;
+    gap: 12px;
+}

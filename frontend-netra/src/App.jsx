@@ -1,8 +1,12 @@
 import React from 'react'
+import Entryform from './pages/Entryform'
 
 const App = () => {
   return (
-    <div>App</div>
+   
+    <>
+    <Entryform/>
+    </>
   )
 }
 
