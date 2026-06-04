@@ -1,0 +1,116 @@
+.first {
+    display: flex;
+    justify-content: center;
+    background-color: #565454;
+    height: 100vh;
+    padding: 32px 0;
+}
+
+.Card {
+    border: 2px solid rebeccapurple;
+    width: 35vw;
+    min-height: 84vh;
+    height: auto;
+    background-color: #282020;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    border-radius: 10px;
+    padding: 24px 28px;
+    box-sizing: border-box;
+    gap: 24px;
+}
+
+.Border {
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.Border img {
+    width: 140px;
+    height: auto;
+}
+
+.Border h1 {
+    color: aliceblue;
+    font-weight: 700;
+    font-size: larger;
+    margin: 8px 0 0 0;
+}
+
+.table {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    
+}
+
+form {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+}
+
+.form-group label {
+    color: #967d7d;
+    font-size: 20px;
+    font-weight: 600;
+}
+
+.form-group input {
+    padding: 10px 12px;
+    border: 1px solid #444;
+    border-radius: 6px;
+    background-color: #3a2f2f;
+    color: #fff;
+    font-size: 19px;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.form-group input:focus {
+    border-color: rebeccapurple;
+}
+
+.form-group input::placeholder {
+    color: #888;
+}
+
+.submit-btn {
+    padding: 12px;
+    background-color: rebeccapurple;
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 15px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 6px;
+    width: 100%;
+    box-sizing: border-box;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+.submit-btn:hover {
+    background-color: #7b3db8;
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.submit-btn:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
