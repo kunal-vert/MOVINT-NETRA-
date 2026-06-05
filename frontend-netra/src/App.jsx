@@ -1,17 +1,21 @@
 import React, { useState } from 'react'
 import Entryform from './pages/Entryform'
 import Borderguard from './components/Borderguard'
-
+import Checkpost from './components/Checkpost'
 
 const App = () => {
-  const [Operating, setOperating] = useState('Immigration')
+  const [view, setView] = useState('entryform')
+
   return (
-   
-    <>
-    <Entryform/>
-    {/* <Borderguard/> */}
-    
-    </>
+    <div>
+      <Checkpost/>
+      
+      {/* {view === 'entryform' ? (
+        <Entryform onBorderGuardClick={() => setView('borderguard')} />
+      ) : (
+        <Borderguard onImmigrationClick={() => setView('entryform')} />
+      )} */}
+    </div>
   )
 }
 

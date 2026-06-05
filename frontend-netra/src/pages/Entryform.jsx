@@ -1,10 +1,9 @@
 import React from 'react';
 import './Entryform.css';
 
-const Entryform = () => {
+const Entryform = ({ onBorderGuardClick }) => {
     return (
         <div className="Entry">
-
             <div className="header">
                 <div className="content">
                     <div className="right-content">Entry Form</div>
@@ -19,7 +18,7 @@ const Entryform = () => {
                     <span>Checkpost Officer</span>
                     <span>Hotel Desk</span>
                     <span>Toll Operator</span>
-                    <span>Border Guard</span>
+                    <span onClick={onBorderGuardClick} style={{ cursor: 'pointer' }}>Border Guard</span>
                 </div>
             </div>
 
