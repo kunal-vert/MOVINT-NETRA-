@@ -1,12 +1,13 @@
 import React from 'react'
 import './Borderguard.css'
 
-const Borderguard = ({ onImmigrationClick }) => {
+const Borderguard = ({ onImmigrationClick, onCheckpostClick }) => {
     return (
         <div>
             <div className="bg-tabs">
                 <span onClick={onImmigrationClick} style={{ cursor: 'pointer' }}>Immigration</span>
                 <span className="active">Border Guard</span>
+                <span onClick={onCheckpostClick} style={{ cursor: 'pointer' }}>Checkpost</span>
             </div>
 
             <div className='first'>

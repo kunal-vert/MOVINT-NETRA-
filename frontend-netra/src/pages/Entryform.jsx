@@ -1,7 +1,7 @@
 import React from 'react';
 import './Entryform.css';
 
-const Entryform = ({ onBorderGuardClick }) => {
+const Entryform = ({ onBorderGuardClick, onCheckpostClick }) => {
     return (
         <div className="Entry">
             <div className="header">
@@ -15,7 +15,7 @@ const Entryform = ({ onBorderGuardClick }) => {
                 <div className="operating">Operating As:</div>
                 <div className="check-post">
                     <span className="active">Airport Immigration</span>
-                    <span>Checkpost Officer</span>
+                    <span onClick={onCheckpostClick} style={{ cursor: 'pointer' }}>Checkpost Officer</span>
                     <span>Hotel Desk</span>
                     <span>Toll Operator</span>
                     <span onClick={onBorderGuardClick} style={{ cursor: 'pointer' }}>Border Guard</span>
@@ -23,7 +23,6 @@ const Entryform = ({ onBorderGuardClick }) => {
             </div>
 
             <div className="form-layer">
-
                 <div className="passport-section">
                     <p className="section-label">PASSPORT CHECK & RETURNING VISITOR DETECTION</p>
                     <div className="passport-row">
@@ -33,7 +32,6 @@ const Entryform = ({ onBorderGuardClick }) => {
                 </div>
 
                 <div className="details-grid">
-
                     <div className="form-card">
                         <p className="card-title">VISITOR DETAILS</p>
 
@@ -45,7 +43,8 @@ const Entryform = ({ onBorderGuardClick }) => {
                         <div className="field-row">
                             <div className="field">
                                 <label>Nationality</label>
-                                <select>    <option value="">Select...</option>
+                                <select>
+                                    <option value="">Select...</option>
                                     <option>Chinese</option>
                                     <option>Bangladeshi</option>
                                     <option>Myanmar</option>
@@ -57,7 +56,8 @@ const Entryform = ({ onBorderGuardClick }) => {
                                     <option>Japanese</option>
                                     <option>South Korean</option>
                                     <option>Nepali</option>
-                                    <option>Sri Lankan</option></select>
+                                    <option>Sri Lankan</option>
+                                </select>
                             </div>
                             <div className="field">
                                 <label>Gender</label>
@@ -80,7 +80,6 @@ const Entryform = ({ onBorderGuardClick }) => {
                                     <option>Tourist</option>
                                     <option>Business</option>
                                     <option>Student</option>
-
                                     <option>Research</option>
                                     <option>Diplomatic</option>
                                     <option>Transit</option>
@@ -135,18 +134,17 @@ const Entryform = ({ onBorderGuardClick }) => {
                             </div>
                         </div>
                     </div>
-
                 </div>
             </div>
+
             <div className="footer">
                 <div className="submit">
-                    <h1>Submitting as: DGCA officer
-                    </h1>
+                    <h1>Submitting as: DGCA officer</h1>
                     <button className="icon-submit">
-                        <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/submit-icon-svg-download-png-3154183.png?f=webp&w=256" alt="" /></button>
+                        <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/submit-icon-svg-download-png-3154183.png?f=webp&w=256" alt="" />
+                    </button>
                 </div>
             </div>
-
         </div>
     );
 };

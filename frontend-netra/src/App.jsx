@@ -8,13 +8,24 @@ const App = () => {
 
   return (
     <div>
-      <Checkpost/>
-      
-      {/* {view === 'entryform' ? (
-        <Entryform onBorderGuardClick={() => setView('borderguard')} />
-      ) : (
-        <Borderguard onImmigrationClick={() => setView('entryform')} />
-      )} */}
+      {view === 'entryform' && (
+        <Entryform
+          onBorderGuardClick={() => setView('borderguard')}
+          onCheckpostClick={() => setView('checkpost')}
+        />
+      )}
+      {view === 'borderguard' && (
+        <Borderguard
+          onImmigrationClick={() => setView('entryform')}
+          onCheckpostClick={() => setView('checkpost')}
+        />
+      )}
+      {view === 'checkpost' && (
+        <Checkpost
+          onImmigrationClick={() => setView('entryform')}
+          onBorderGuardClick={() => setView('borderguard')}
+        />
+      )}
     </div>
   )
 }
