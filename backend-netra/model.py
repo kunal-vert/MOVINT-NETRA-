@@ -83,7 +83,7 @@ class Foreign_National(Base):
         city:          Mapped[str]        = mapped_column(String(100), nullable=False)
         area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
         entry_point:   Mapped[str | None] = mapped_column(String(200), nullable=True)
-        entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
+        # entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
         exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
         duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
         visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
@@ -92,7 +92,7 @@ class Foreign_National(Base):
         notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
 
 
-         # ── Relationships ─────────────────────────────────────────
+         # ── Relationships ───────────────────────────────────────── need to add further
     national:   Mapped[Foreign_National]           = relationship(back_populates="visits")
     # ilp_permit: Mapped[IlpPermit | None]          = relationship(back_populates="visits")
     tracking:   Mapped[list[LocationTracking]]    = relationship(
@@ -100,6 +100,13 @@ class Foreign_National(Base):
         cascade="all, delete-orphan",
         order_by="LocationTracking.logged_at"
     )
+
+class LocationTracking(Base):
+    __tablename__ = "location_tracking"
+
+    tracking_id:   Mapped[int]          = mapped_column(Integer, primary_key=True, index=True)
+    passport_id:   Mapped[str]          = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
+    visit_id:      Mapped[int | None]   = mapped_column(ForeignKey("visit_history.visit_id"),        nullable=True,  index=True)
 
 
 
