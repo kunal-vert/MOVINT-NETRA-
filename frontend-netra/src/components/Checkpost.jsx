@@ -7,11 +7,7 @@ const Checkpost = ({ onImmigrationClick, onBorderGuardClick }) => {
 
             <img className='cp-img' src="https://images.unsplash.com/photo-1780474980645-26c7bea72399?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="" />
 
-            <div className='cp-tabs'>
-                <span onClick={onImmigrationClick}>Immigration</span>
-                <span onClick={onBorderGuardClick}>Border Guard</span>
-                <span className='active'>Checkpost</span>
-            </div>
+            <div></div>
 
             <div className='cp-card'>
                 <span className='cp-title'>Checkpost</span>
