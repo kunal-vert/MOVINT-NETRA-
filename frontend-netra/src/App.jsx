@@ -1,13 +1,21 @@
-import React, { useState } from 'react'
-import Interface from './pages/Interface'
-
+import { Routes, Route } from 'react-router-dom'
+import Navbar from './components/Navbar.jsx/Navbar'
+import Nationals from './pages/Nationals'
+import Entryform from './pages/Entryform'
+import GeoTracker from './pages/GeoTracker'
+import AlertsPanel from './pages/AlertsPanel'
 
 const App = () => {
-  
-
   return (
-    <div className=''>
-     <Interface/>
+    <div>
+      <Navbar />
+      <Routes>
+        <Route path='/' element={<Nationals />} />
+        <Route path='/nationals' element={<Nationals />} />
+        <Route path='/deployment' element={<Entryform />} />
+        <Route path='/geo-tracker' element={<GeoTracker />} />
+        <Route path='/alerts' element={<AlertsPanel />} />
+      </Routes>
     </div>
   )
 }
