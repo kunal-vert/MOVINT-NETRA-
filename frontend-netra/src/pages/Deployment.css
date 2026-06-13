@@ -11,6 +11,10 @@ body {
     color: white;
     font-family: 'Segoe UI', sans-serif;
 }
+.Entry{
+background-color: rgb(18, 16, 16);
+}
+
 
 .header {
     background-color: red;
