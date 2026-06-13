@@ -1,5 +1,5 @@
 import React from 'react';
-import './Entryform.css';
+import './Deployment.css';
 
 const Entryform = ({ onBorderGuardClick, onCheckpostClick }) => {
     return (

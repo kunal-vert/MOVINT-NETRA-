@@ -2,8 +2,8 @@ import React from 'react'
 
 const MOVINT = () => {
   return (
-    <div>
-        <h1>this is the main </h1>
+    <div className=''>
+      <h1 className='bg-gray-500 font-extrabold text-2xl p-2.5  '>heyyyyyyyyyyy</h1>
     </div>
   )
 }
