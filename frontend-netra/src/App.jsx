@@ -4,13 +4,14 @@ import Nationals from './pages/Nationals'
 import Entryform from './pages/Entryform'
 import GeoTracker from './pages/GeoTracker'
 import AlertsPanel from './pages/AlertsPanel'
+import MOVINT from './pages/MOVINT'
 
 const App = () => {
   return (
     <div>
       <Navbar />
       <Routes>
-        <Route path='/' element={<Nationals />} />
+        <Route path='/' element={<MOVINT />} />
         <Route path='/nationals' element={<Nationals />} />
         <Route path='/deployment' element={<Entryform />} />
         <Route path='/geo-tracker' element={<GeoTracker />} />
