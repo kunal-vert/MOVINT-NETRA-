@@ -1,7 +1,7 @@
 import React from 'react'
 import './Checkpost.css'
 
-const Checkpost = ({ onImmigrationClick, onBorderGuardClick }) => {
+const Checkpost = () => {
     return (
         <div className='cp-main'>
 
