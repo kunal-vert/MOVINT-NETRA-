@@ -1,24 +1,43 @@
-import { useRef } from 'react';
+import React, { useState } from 'react';
 import './Deployment.css';
 
 const Deployment = () => {
-    const formRef = useRef(null);
-    const passportRef = useRef(null);
+    const [formData, setFormData] = useState({
+        passportNumber: '',
+        fullName: '',
+        nationality: '',
+        gender: 'Male',
+        dob: '',
+        visaType: 'Tourist',
+        visaExpiry: '',
+        purpose: '',
+        entryPoint: '',
+        ilpNumber: '',
+        destState: '',
+        destCity: '',
+        hotelName: '',
+        employer: ''
+    });
+
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        setFormData(prev => ({ ...prev, [name]: value }));
+    };
 
     const handleCheckPassport = async () => {
-        const passportNumber = passportRef.current.value;
-        console.log('Checking passport:', passportNumber);
-        // TODO: fetch from FastAPI backend, then populate fields via formRef.current.elements
+        console.log('Checking passport:', formData.passportNumber);
+        // TODO: fetch from FastAPI backend, then setFormData with returned visitor data
     };
 
     const handleSubmit = () => {
-        const data = Object.fromEntries(new FormData(formRef.current));
-        console.log('Submitting:', data);
-        // TODO: POST data to FastAPI backend
+        console.log('Submitting:', formData);
+        // TODO: POST formData to FastAPI backend
     };
 
     return (
         <div className="Entry">
+            
+
             <div className="check-layer">
                 <div className="operating">Operating As:</div>
                 <div className="check-post">
@@ -30,7 +49,7 @@ const Deployment = () => {
                 </div>
             </div>
 
-            <form className="form-layer" ref={formRef}>
+            <div className="form-layer">
                 <div className="passport-section">
                     <p className="section-label">PASSPORT CHECK & RETURNING VISITOR DETECTION</p>
                     <div className="passport-row">
@@ -38,9 +57,10 @@ const Deployment = () => {
                             type="text"
                             name="passportNumber"
                             placeholder="Enter passport number (e.g. E12345678)"
-                            ref={passportRef}
+                            value={formData.passportNumber}
+                            onChange={handleChange}
                         />
-                        <button type="button" className="check-btn" onClick={handleCheckPassport}>
+                        <button className="check-btn" onClick={handleCheckPassport}>
                             Check Passport
                         </button>
                     </div>
@@ -56,13 +76,15 @@ const Deployment = () => {
                                 type="text"
                                 name="fullName"
                                 placeholder="As on passport"
+                                value={formData.fullName}
+                                onChange={handleChange}
                             />
                         </div>
 
                         <div className="field-row">
                             <div className="field">
                                 <label>Nationality</label>
-                                <select name="nationality" defaultValue="">
+                                <select name="nationality" value={formData.nationality} onChange={handleChange}>
                                     <option value="">Select...</option>
                                     <option>Chinese</option>
                                     <option>Bangladeshi</option>
@@ -80,7 +102,7 @@ const Deployment = () => {
                             </div>
                             <div className="field">
                                 <label>Gender</label>
-                                <select name="gender" defaultValue="Male">
+                                <select name="gender" value={formData.gender} onChange={handleChange}>
                                     <option>Male</option>
                                     <option>Female</option>
                                     <option>Other</option>
@@ -91,11 +113,16 @@ const Deployment = () => {
                         <div className="field-row">
                             <div className="field">
                                 <label>Date of Birth</label>
-                                <input type="date" name="dob" />
+                                <input
+                                    type="date"
+                                    name="dob"
+                                    value={formData.dob}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="field">
                                 <label>Visa Type</label>
-                                <select name="visaType" defaultValue="Tourist">
+                                <select name="visaType" value={formData.visaType} onChange={handleChange}>
                                     <option>Tourist</option>
                                     <option>Business</option>
                                     <option>Student</option>
@@ -109,11 +136,16 @@ const Deployment = () => {
                         <div className="field-row">
                             <div className="field">
                                 <label>Visa Expiry</label>
-                                <input type="date" name="visaExpiry" />
+                                <input
+                                    type="date"
+                                    name="visaExpiry"
+                                    value={formData.visaExpiry}
+                                    onChange={handleChange}
+                                />
                             </div>
                             <div className="field">
                                 <label>Purpose</label>
-                                <select name="purpose" defaultValue="">
+                                <select name="purpose" value={formData.purpose} onChange={handleChange}>
                                     <option value="">Select...</option>
                                 </select>
                             </div>
@@ -125,7 +157,7 @@ const Deployment = () => {
 
                         <div className="field">
                             <label>Entry Point</label>
-                            <select name="entryPoint" defaultValue="">
+                            <select name="entryPoint" value={formData.entryPoint} onChange={handleChange}>
                                 <option value="">Select entry point...</option>
                             </select>
                         </div>
@@ -136,19 +168,21 @@ const Deployment = () => {
                                 type="text"
                                 name="ilpNumber"
                                 placeholder="ILP-AP-2024-XXXX"
+                                value={formData.ilpNumber}
+                                onChange={handleChange}
                             />
                         </div>
 
                         <div className="field-row">
                             <div className="field">
                                 <label>Destination State</label>
-                                <select name="destState" defaultValue="">
+                                <select name="destState" value={formData.destState} onChange={handleChange}>
                                     <option value="">Select state...</option>
                                 </select>
                             </div>
                             <div className="field">
                                 <label>Destination City</label>
-                                <select name="destCity" defaultValue="">
+                                <select name="destCity" value={formData.destCity} onChange={handleChange}>
                                     <option value="">Select city...</option>
                                 </select>
                             </div>
@@ -161,6 +195,8 @@ const Deployment = () => {
                                     type="text"
                                     name="hotelName"
                                     placeholder="Declared accommodation"
+                                    value={formData.hotelName}
+                                    onChange={handleChange}
                                 />
                             </div>
                             <div className="field">
@@ -169,21 +205,20 @@ const Deployment = () => {
                                     type="text"
                                     name="employer"
                                     placeholder="Employer or organization"
+                                    value={formData.employer}
+                                    onChange={handleChange}
                                 />
                             </div>
                         </div>
                     </div>
                 </div>
-            </form>
+            </div>
 
             <div className="footer">
                 <div className="submit">
                     <h1>Submitting as: DGCA officer</h1>
-                    <button type="button" className="icon-submit" onClick={handleSubmit}>
-                        <img
-                            src="https://cdn.iconscout.com/icon/premium/png-512-thumb/submit-icon-svg-download-png-3154183.png?f=webp&w=256"
-                            alt="Submit"
-                        />
+                    <button className="icon-submit" onClick={handleSubmit}>
+                        <img src="https://cdn.iconscout.com/icon/premium/png-512-thumb/submit-icon-svg-download-png-3154183.png?f=webp&w=256" alt="" />
                     </button>
                 </div>
             </div>
