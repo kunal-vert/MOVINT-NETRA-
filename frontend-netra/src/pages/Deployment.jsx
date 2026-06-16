@@ -37,7 +37,7 @@ const Deployment = () => {
     };
 
     return (
-        <div className="Entry">
+        <div className="">
             
 
            <OperatingL/>

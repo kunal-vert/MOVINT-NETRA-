@@ -13,6 +13,7 @@ const App = () => {
       <Navbar />
       {/* <Deployment/> */}
       
+      
       <Routes>
         <Route path='/' element={<MOVINT />} />
         <Route path='/geo-tracker' element={<GeoTracker />} />
