@@ -4,7 +4,7 @@ import nationalsData from '../components/Data/Nationals'
 
 
 
-// ─── HELPERS ───────────────────────────────────────────────────────────────────
+// These are for colors for respective matching
 const riskColor = (level) => {
   if (level === 'CRITICAL') return 'text-red-400'
   if (level === 'HIGH') return 'text-orange-400'
@@ -29,14 +29,18 @@ const flagBadge = (flag) => {
   return styles[flag] || 'bg-gray-700 text-gray-300'
 }
 
-// ─── MODAL ─────────────────────────────────────────────────────────────────────
+
+
+
+
+
 function NationalModal({ person, onClose }) {
   const isExpired = person.passportExpiry < new Date().toISOString().split('T')[0]
 
   return (
     // Backdrop
     <div
-      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 font-[font1] text-2xl"
+      className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4 font-[font2]"
       onClick={onClose}
     >
       {/* Modal box — stop click from closing when clicking inside */}
@@ -180,7 +184,7 @@ const FILTERS = ['ALL', 'CRITICAL', 'HIGH', 'MEDIUM', 'LOW']
 const Nationals = () => {
   const [selectedPerson, setSelectedPerson] = useState(null)
   const [activeFilter, setActiveFilter] = useState('ALL')
-  const [searchQuery, setSearchQuery] = useState('')
+  const [searchQuery, setSearchQuery] = useState('')  
 
   // Filter + search logic
   const filtered = nationalsData.filter((n) => {
@@ -220,11 +224,10 @@ const Nationals = () => {
             <button
               key={f}
               onClick={() => setActiveFilter(f)}
-              className={`text-xs font-bold px-4 py-1.5 rounded-lg border transition ${
-                activeFilter === f
+              className={`text-xs font-bold px-4 py-1.5 rounded-lg border transition ${activeFilter === f
                   ? 'bg-orange-500 border-orange-400 text-black'
                   : 'bg-gray-800 border-gray-700 text-gray-400 hover:border-gray-500'
-              }`}
+                }`}
             >
               {f}
             </button>
@@ -269,9 +272,8 @@ const Nationals = () => {
                   <tr
                     key={n.id}
                     onClick={() => setSelectedPerson(n)}
-                    className={`border-b border-gray-800 cursor-pointer hover:bg-gray-800 transition ${
-                      i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-950'
-                    }`}
+                    className={`border-b border-gray-800 cursor-pointer hover:bg-gray-800 transition ${i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-950'
+                      }`}
                   >
                     {/* Name */}
                     <td className="px-4 py-3">

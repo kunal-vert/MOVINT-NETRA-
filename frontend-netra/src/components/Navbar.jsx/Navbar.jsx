@@ -9,6 +9,7 @@ const Navbar = () => {
 
 
                 <Link className='font-semibold text-3xl font-serif text-white  ' to='/'>MOVINT
+                
                 </Link>
             </div>
             <div className='font-medium text-[19px] flex items-center gap-3.5 text-gray-800 '>
