@@ -18,6 +18,7 @@ class Foreign_National(Base):
     date_of_birth:     Mapped[str]        = mapped_column(Date,        nullable=False)
     passport_expiry:   Mapped[str]        = mapped_column(Date,        nullable=False)
     occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)
+    country_code:      Mapped[str]        = mapped_column(String (50),  nullable=False   )
 
     #Risk or flag before He/She arrives
     criminal_record:   Mapped[bool]       = mapped_column(Boolean, nullable=False, default=False)
