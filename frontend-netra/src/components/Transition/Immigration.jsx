@@ -11,7 +11,7 @@ const Immigration = () => {
 
                     <div className=' text-center  text-xl font-[font1] my-2.5 border-violet-950   rounded-2xl py-1 mx-10 border-b-2 gap-0 relative '>Visitor Details
                     </div>
-                    <img src={Bagpack} className='w-10 h-10 mx-auto mb-2 invert-25   ' alt="Backpack invert  " />
+                    <img src={Bagpack} className='w-10 h-10 mx-auto mb-2 invert-25   ' alt="Backpack  " />
 
                 </div>
 
