@@ -4,15 +4,18 @@ import Bagpack from '../../assets/Bagpack.svg'
 
 const Immigration = () => {
     return (
-        <div className='flex  bg-black  '>
-            <div className='w-1/2 h-[85%]  border-r-2 border-b-2 border-gray-900 my-3 overflow-y-scroll  '>
-      <div className='flex justify-center items-center bg-violet-400 rounded-full mx-5     '>
-        <div className=' text-center  text-3xl font-[font1] my-2.5   rounded-2xl py-1 mx-10 border-b-2 gap-0 '>Visitor Details
-  </div>
-                <img src={Bagpack} className='w-16 h-16 mx-auto mb-2 invert-25 ' alt="Backpack invert " />
-      </div>
-                <p className="text-[20px] font-[font1] ">PASSPORT ID</p>
+        <div className='flex  bg-black h-screen  '>
+            <div className='w-1/3 h-full  border-r-2 border-b-2 border-gray-900  overflow-y-scroll bg-slate-900  '>
+                <div className='flex gap-0  items-center bg-violet-400 rounded-full   border-b-2 border-black mx-auto w-fit py-2 my-1.5  '>
+
+                    <div className=' text-center  text-3xl font-[font1] my-2.5   rounded-2xl py-1 mx-10 border-b-2 gap-0 '>Visitor Details
+                    </div>
+                    <img src={Bagpack} className='w-16 h-16 mx-auto mb-2 invert-25 ' alt="Backpack invert " />
+
+                </div>
+
                 <div className="passport-row ">
+                    <p className="text-[20px] font-[font2] ">PASSPORT ID</p>
                     <input
                         className=' '
                         type="text"
@@ -87,7 +90,7 @@ const Immigration = () => {
                     </button>
                 </div>
             </div>
-
+            <div className='h-full bg-red-500 w-2/3'> </div>
 
         </div>
     )
