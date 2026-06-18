@@ -136,7 +136,10 @@ const Immigration = () => {
             </div>
 
             <ImmigrationRight />
+            
 
+            <ImmigrationRight />
+            
         </div>
     )
 }
