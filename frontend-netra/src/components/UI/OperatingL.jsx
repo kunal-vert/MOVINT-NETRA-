@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom'
 
 const OperatingL = () => {
     return (
-        <div className="flex items-center gap-2.5 p-7">
+        <div className="flex items-center gap-2.5 p-7 ">
 
             <Link to='/deployment/immigration'
                 className='text-3xl px-2 py-2 font-[font1] text-center text-blue-400 bg-gray-500 rounded-full hover:text-[rgb(211,253,80)] hover:border-[rgb(211,253,80)]'>
