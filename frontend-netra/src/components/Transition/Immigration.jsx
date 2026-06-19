@@ -10,7 +10,13 @@ const Immigration = () => {
     return (
         <div className='flex flex-col lg:flex-row bg-black h-full min-h-0'>
 
-            <div className='w-[50%] shrink-0 lg:w-1/3 h-full min-h-0 border-b-2 lg:border-b-0 lg:border-r-2 border-gray-900 overflow-y-auto bg-slate-900'>
+            <div className='w-[50%] shrink-0 lg:w-1/3 h-full min-h-0 border-b-2 lg:border-b-0 lg:border-r-2 border-gray-900 overflow-y-auto scrollbar-hide bg-slate-900'>
+                {/* <div
+  className="absolute inset-0 opacity-10 bg-no-repeat bg-top bg-contain pointer-events-none"
+  style={{
+    backgroundImage: "url('https://images-platform.99static.com//Y4V9vP3dM4rGxM4w6kQ8fXxW1n8=/0x0:1000x1000/fit-in/500x500/projects-files/123/12345/1234567/logo.png')"
+  }}
+></div> */}
 
                 <div className='flex gap-2 items-center bg-violet-400 rounded-full border-b-2 border-black mx-auto w-fit px-4 py-2 my-1.5'>
                     <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2'>
@@ -122,30 +128,30 @@ const Immigration = () => {
                         </select>
                     </div>
 
-                   <div className="flex items-center justify-between w-full p-4 bg-sky-900 rounded-xl mt-4">
-    
-    <h1 className="text-white text-base font-semibold tracking-wide">
-        Deploy as: DGCA Officer
-    </h1>
+                    <div className="flex items-center justify-between w-full p-4 bg-sky-900 rounded-xl mt-4">
 
-    <button className="p-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-sky-700 hover:scale-110 active:scale-95">
-        <img
-            className="w-9 h-9 object-cover transition-transform duration-300 hover:-translate-y-1 hover:rotate-6"
-            src="/Image/fighter-plane.png"
-            alt="fighter plane"
-        />
-    </button>
+                        <h1 className="text-white text-base font-semibold tracking-wide">
+                            Deploy as: DGCA Officer
+                        </h1>
 
-</div>
+                        <button className="p-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-sky-700 hover:scale-110 active:scale-95">
+                            <img
+                                className="w-9 h-9 object-cover transition-transform duration-300 hover:-translate-y-1 hover:rotate-6"
+                                src="/Image/fighter-plane.png"
+                                alt="fighter plane"
+                            />
+                        </button>
+
+                    </div>
 
                 </div>
             </div>
             <div className='flex-1 min-h-0 grid gap-4 p-4 content-start overflow-y-auto'
-     style={{gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))'}}>
-    {visitors.map((VisitorsData) => (
-        <ImmigrationRight key={VisitorsData.id} data={VisitorsData} />
-    ))}
-</div>
+                style={{ gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))' }}>
+                {visitors.map((VisitorsData) => (
+                    <ImmigrationRight key={VisitorsData.id} data={VisitorsData} />
+                ))}
+            </div>
         </div>
     )
 }
