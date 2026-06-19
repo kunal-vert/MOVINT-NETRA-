@@ -1,5 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
-import Navbar from './components/Navbar.jsx/Navbar'
+import Navbar from './components/Navbar/Navbar'
 import Nationals from './pages/Nationals'
 import Deployment from './pages/Deployment'
 import GeoTracker from './pages/GeoTracker'
