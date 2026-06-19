@@ -9,4 +9,4 @@ const Deployment = () => {
     )
 }
 
-export default Deployment   // 👈 this was missing
+export default Deployment  
