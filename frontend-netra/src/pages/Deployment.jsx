@@ -1,22 +1,12 @@
-import React, { useState } from 'react';
-
-
-import Immigration from '../components/Transition/Immigration';
+import React from 'react'
+import Immigration from '../components/Transition/Immigration'
 
 const Deployment = () => {
-
-
     return (
-        <div className="">
-
-
-
-
+        <div className="h-full overflow-hidden">
             <Immigration />
-
-
         </div>
-    );
-};
+    )
+}
 
-export default Deployment;
+export default Deployment   // 👈 this was missing

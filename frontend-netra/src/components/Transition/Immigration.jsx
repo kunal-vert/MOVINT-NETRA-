@@ -1,15 +1,16 @@
 import React from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
 import ImmigrationRight from './ImmigrationRight'
+import visitors from '../Data/visitors'
 
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 
 const Immigration = () => {
     return (
-        <div className='flex flex-col lg:flex-row bg-black min-h-screen'>
+        <div className='flex flex-col lg:flex-row bg-black h-full min-h-0'>
 
-            <div className='w-full lg:w-1/3 lg:h-screen border-b-2 lg:border-b-0 lg:border-r-2 border-gray-900 overflow-y-auto bg-slate-900'>
+            <div className='w-1/2 shrink-0 lg:w-1/3 h-full min-h-0 border-b-2 lg:border-b-0 lg:border-r-2 border-gray-900 overflow-y-auto bg-slate-900'>
 
                 <div className='flex gap-2 items-center bg-violet-400 rounded-full border-b-2 border-black mx-auto w-fit px-4 py-2 my-1.5'>
                     <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2'>
@@ -134,12 +135,12 @@ const Immigration = () => {
 
                 </div>
             </div>
-
-            <ImmigrationRight />
-            
-
-            <ImmigrationRight />
-            
+            <div className='flex-1 min-h-0 grid gap-4 p-4 content-start overflow-y-auto'
+     style={{gridTemplateColumns: 'repeat(auto-fit, minmax(380px, 1fr))'}}>
+    {visitors.map((VisitorsData) => (
+        <ImmigrationRight key={VisitorsData.id} data={VisitorsData} />
+    ))}
+</div>
         </div>
     )
 }

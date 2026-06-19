@@ -5,7 +5,7 @@ const roleLink = 'bg-gray-600 font-[font2] text-sm border-white border-2 text-ce
 
 const OperatingL = () => {
     return (
-        <div className="flex flex-col items-start gap-2 p-3">
+        <div className="flex flex-col items-start gap-2 p-3 shrink-0">
 
             <Link
                 to='/deployment/immigration'
