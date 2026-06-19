@@ -11,7 +11,7 @@ const ImmigrationRight = ({ data }) => {
     const risk = riskColors[data.riskLevel]
 
     return (
-       <div className='  bg-gray-900 rounded-xl p-6 flex flex-col gap-8'>
+       <div className='  bg-gray-900  rounded-xl p-6 flex flex-col gap-8'>
 
             <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-4">
@@ -39,7 +39,7 @@ const ImmigrationRight = ({ data }) => {
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Occupation</h2>
-                    <p className="font-semibold text-lg">{data.occupation}</p>
+                    <p className="font-semibold text-lg mx-1 ">{data.occupation}</p>
                 </div>
 
                 <div>
