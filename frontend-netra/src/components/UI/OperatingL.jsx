@@ -25,7 +25,7 @@ const OperatingL = () => {
                 className='text-xl px-2 py-1.5 font-[font1] text-center text-blue-400 bg-gray-500 rounded-full hover:text-[rgb(211,253,80)] hover:border-[rgb(211,253,80)]'>
                 Operating As:
             </Link>
-  
+
 
             <div className="flex flex-wrap gap-4  ">
                 <Link to='/deployment/immigration' className={roleLink1}>Airport Immigration</Link>

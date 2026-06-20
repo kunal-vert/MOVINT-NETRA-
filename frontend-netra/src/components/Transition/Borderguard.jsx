@@ -63,7 +63,7 @@ const Borderguard = () => {
             {/* Submit */}
             <button
               type="submit"
-              className="w-full py-3 mt-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md font-bold text-base transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg"
+              className="w-full py-3 mt-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md font-bold text-base transition-all duration-300 hover:-translate-y-0.5 shadow-md hover:shadow-lg hover:cursor-pointer"
             >
               Submit
             </button>

@@ -12,7 +12,7 @@ const Checkpost = () => {
       />
 
      
-      <div className="relative z-10 w-[90%] sm:w-[70%] lg:w-[50vw] p-8 bg-black/70 border-2 border-purple-600 rounded-xl">
+      <div className="relative z-10 w-[90%] sm:w-[70%] lg:w-[50vw] p-8 bg-black/70 border-2 border-purple-600 rounded-xl ">
 
         <span className="block text-center text-white text-3xl font-bold mb-6">
           Checkpost
@@ -54,7 +54,7 @@ const Checkpost = () => {
         
           <button
             type="submit"
-            className="w-full py-3 mt-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition"
+            className="w-full py-3 mt-2 bg-purple-600 hover:bg-purple-700 text-white rounded-md transition hover:cursor-pointer"
           >
             Deploy
           </button>
