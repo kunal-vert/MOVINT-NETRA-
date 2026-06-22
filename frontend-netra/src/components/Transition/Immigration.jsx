@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
 import ImmigrationRight from './ImmigrationRight'
 import visitors from '../Data/visitors'
@@ -7,6 +7,13 @@ const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 te
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 
 const Immigration = () => {
+
+const SubmitDeploy = () =>{
+
+}
+
+
+
     return (
         <div className='flex flex-col lg:flex-row bg-black h-full min-h-0'>
 
@@ -130,7 +137,7 @@ const Immigration = () => {
 
                     <div className="flex items-center justify-between w-full p-4 bg-sky-900 rounded-xl mt-4">
 
-                        <h1 className="text-white text-base font-semibold tracking-wide">
+                        <h1 onClick={SubmitDeploy} className="text-white text-base font-semibold tracking-wide">
                             Deploy as: DGCA Officer
                         </h1>
 
