@@ -8,6 +8,18 @@ const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 t
 
 const Immigration = () => {
 
+const [form, setform] = useState([
+    
+])
+
+
+
+
+
+
+
+
+
 const SubmitDeploy = () =>{
 
 }
