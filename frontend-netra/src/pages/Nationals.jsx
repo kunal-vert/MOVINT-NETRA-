@@ -1,9 +1,6 @@
 import { useState } from 'react'
 import nationalsData from '../components/Data/Nationals'
 
-
-
-
 // These are for colors for respective matching
 const riskColor = (level) => {
   if (level === 'CRITICAL') return 'text-red-400'
@@ -28,11 +25,6 @@ const flagBadge = (flag) => {
   }
   return styles[flag] || 'bg-gray-700 text-gray-300'
 }
-
-
-
-
-
 
 function NationalModal({ person, onClose }) {
   const isExpired = person.passportExpiry < new Date().toISOString().split('T')[0]
@@ -199,10 +191,11 @@ const Nationals = () => {
   })
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-6">
+    // Flex column layout locked to exact screen height to anchor dashboard view
+    <div className="h-screen bg-gray-950 text-white p-6 flex flex-col overflow-hidden">
 
       {/* ── Page Header ── */}
-      <div className="flex items-center justify-between mb-6">
+      <div className="flex items-center justify-between mb-6 flex-shrink-0">
         <div>
           <h1 className="text-2xl font-bold text-white tracking-wide">Foreign National Registry</h1>
           <p className="text-sm text-gray-400 mt-1">Northeast India · ILP Monitoring</p>
@@ -218,7 +211,7 @@ const Nationals = () => {
       </div>
 
       {/* ── Filter Bar + Search ── */}
-      <div className="flex items-center justify-between mb-4 gap-4 flex-wrap">
+      <div className="flex items-center justify-between mb-4 gap-4 flex-wrap flex-shrink-0">
         <div className="flex gap-2">
           {FILTERS.map((f) => (
             <button
@@ -242,117 +235,122 @@ const Nationals = () => {
         />
       </div>
 
-      {/* ── Table ── */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl ">
-        <table className="w-full text-sm ">
-          <thead>
-            <tr className="text-xs text-gray-500 uppercase tracking-widest border-b border-gray-800 bg-gray-950">
-              <th className="text-left px-4 py-3">Name</th>
-              <th className="text-left px-4 py-3">Nationality</th>
-              <th className="text-left px-4 py-3">Occupation</th>
-              <th className="text-left px-4 py-3">Visa</th>
-              <th className="text-center px-4 py-3">NE Visits</th>
-              <th className="text-left px-4 py-3">Last Location</th>
-              <th className="text-left px-4 py-3">Risk Score</th>
-              <th className="text-left px-4 py-3">Expiry</th>
-              <th className="text-left px-4 py-3">Flags</th>
-            </tr>
-          </thead>
-          <tbody>
-            {filtered.length === 0 ? (
-              <tr>
-                <td colSpan={9} className="text-center text-gray-500 py-12">
-                  No nationals found.
-                </td>
+      {/* ── Table Area Wrapper ── */}
+      <div className="bg-gray-900 border border-gray-800 rounded-xl flex flex-col flex-1 overflow-hidden">
+        
+        {/* Table Body Scroll container handling horizontal/vertical boundaries */}
+        <div className="overflow-auto flex-1">
+          <table className="w-full text-sm min-w-[1000px] border-collapse">
+            <thead>
+              {/* Sticky top prevents the header from scrolling away */}
+              <tr className="text-xs text-gray-500 uppercase tracking-widest border-b border-gray-800 bg-gray-950 sticky top-0 z-10">
+                <th className="text-left px-4 py-3">Name</th>
+                <th className="text-left px-4 py-3">Nationality</th>
+                <th className="text-left px-4 py-3">Occupation</th>
+                <th className="text-left px-4 py-3">Visa</th>
+                <th className="text-center px-4 py-3">NE Visits</th>
+                <th className="text-left px-4 py-3">Last Location</th>
+                <th className="text-left px-4 py-3">Risk Score</th>
+                <th className="text-left px-4 py-3">Expiry</th>
+                <th className="text-left px-4 py-3">Flags</th>
               </tr>
-            ) : (
-              filtered.map((n, i) => {
-                const isExpired = n.passportExpiry < new Date().toISOString().split('T')[0]
-                return (
-                  <tr
-                    key={n.id}
-                    onClick={() => setSelectedPerson(n)}
-                    className={`border-b border-gray-800 cursor-pointer hover:bg-gray-800 transition ${i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-950'
-                      }`}
-                  >
-                    {/* Name */}
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        <span className="text-xs font-bold text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded">
-                          {n.countryCode}
-                        </span>
-                        <div>
-                          <p className="font-semibold text-white">{n.name}</p>
-                          <p className="text-xs text-gray-500">{n.passportId}</p>
-                        </div>
-                      </div>
-                    </td>
-                    {/* Nationality */}
-                    <td className="px-4 py-3 text-gray-300">{n.nationality}</td>
-                    {/* Occupation */}
-                    <td className="px-4 py-3 text-gray-300">{n.occupation}</td>
-                    {/* Visa */}
-                    <td className="px-4 py-3 text-gray-400 text-xs">{n.visaType}</td>
-                    {/* NE Visits */}
-                    <td className="px-4 py-3 text-center">
-                      <span className={`font-bold text-base ${n.neVisits >= 3 ? 'text-orange-400' : 'text-gray-300'}`}>
-                        {n.neVisits}
-                      </span>
-                    </td>
-                    {/* Last Location */}
-                    <td className="px-4 py-3">
-                      <p className="text-white">{n.lastLocation}</p>
-                      <p className="text-xs text-gray-500">{n.lastSeen}</p>
-                    </td>
-                    {/* Risk Score */}
-                    <td className="px-4 py-3">
-                      <div className="flex items-center gap-2">
-                        <div className="w-16 bg-gray-700 rounded-full h-1.5">
-                          <div
-                            className="h-1.5 rounded-full bg-red-500"
-                            style={{ width: `${n.riskScore}%` }}
-                          />
-                        </div>
-                        <span className={`font-bold ${riskColor(n.riskLevel)}`}>{n.riskScore}</span>
-                        <span className={`text-xs font-bold px-2 py-0.5 rounded ${riskBadgeBg(n.riskLevel)}`}>
-                          {n.riskLevel}
-                        </span>
-                      </div>
-                    </td>
-                    {/* Expiry */}
-                    <td className="px-4 py-3">
-                      {isExpired ? (
-                        <span className="text-xs font-bold text-red-400 flex items-center gap-1">
-                          ⚠ EXPIRED
-                        </span>
-                      ) : n.daysLeft ? (
-                        <span className="text-xs text-yellow-400">{n.daysLeft}d left</span>
-                      ) : (
-                        <span className="text-xs text-green-400">✓ Valid</span>
-                      )}
-                    </td>
-                    {/* Flags */}
-                    <td className="px-4 py-3">
-                      <div className="flex gap-1 flex-wrap">
-                        {n.flags.map((f) => (
-                          <span
-                            key={f}
-                            className={`text-xs font-bold px-1.5 py-0.5 rounded ${flagBadge(f)}`}
-                          >
-                            {f}
+            </thead>
+            <tbody>
+              {filtered.length === 0 ? (
+                <tr>
+                  <td colSpan={9} className="text-center text-gray-500 py-12">
+                    No nationals found.
+                  </td>
+                </tr>
+              ) : (
+                filtered.map((n, i) => {
+                  const isExpired = n.passportExpiry < new Date().toISOString().split('T')[0]
+                  return (
+                    <tr
+                      key={n.id}
+                      onClick={() => setSelectedPerson(n)}
+                      className={`border-b border-gray-800 cursor-pointer hover:bg-gray-800 transition ${i % 2 === 0 ? 'bg-gray-900' : 'bg-gray-950'
+                        }`}
+                    >
+                      {/* Name */}
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <span className="text-xs font-bold text-gray-400 bg-gray-800 px-1.5 py-0.5 rounded">
+                            {n.countryCode}
                           </span>
-                        ))}
-                      </div>
-                    </td>
-                  </tr>
-                )
-              })
-            )}
-          </tbody>
-        </table>
+                          <div>
+                            <p className="font-semibold text-white">{n.name}</p>
+                            <p className="text-xs text-gray-500">{n.passportId}</p>
+                          </div>
+                        </div>
+                      </td>
+                      {/* Nationality */}
+                      <td className="px-4 py-3 text-gray-300">{n.nationality}</td>
+                      {/* Occupation */}
+                      <td className="px-4 py-3 text-gray-300">{n.occupation}</td>
+                      {/* Visa */}
+                      <td className="px-4 py-3 text-gray-400 text-xs">{n.visaType}</td>
+                      {/* NE Visits */}
+                      <td className="px-4 py-3 text-center">
+                        <span className={`font-bold text-base ${n.neVisits >= 3 ? 'text-orange-400' : 'text-gray-300'}`}>
+                          {n.neVisits}
+                        </span>
+                      </td>
+                      {/* Last Location */}
+                      <td className="px-4 py-3">
+                        <p className="text-white">{n.lastLocation}</p>
+                        <p className="text-xs text-gray-500">{n.lastSeen}</p>
+                      </td>
+                      {/* Risk Score */}
+                      <td className="px-4 py-3">
+                        <div className="flex items-center gap-2">
+                          <div className="w-16 bg-gray-700 rounded-full h-1.5">
+                            <div
+                              className="h-1.5 rounded-full bg-red-500"
+                              style={{ width: `${n.riskScore}%` }}
+                            />
+                          </div>
+                          <span className={`font-bold ${riskColor(n.riskLevel)}`}>{n.riskScore}</span>
+                          <span className={`text-xs font-bold px-2 py-0.5 rounded ${riskBadgeBg(n.riskLevel)}`}>
+                            {n.riskLevel}
+                          </span>
+                        </div>
+                      </td>
+                      {/* Expiry */}
+                      <td className="px-4 py-3">
+                        {isExpired ? (
+                          <span className="text-xs font-bold text-red-400 flex items-center gap-1">
+                            ⚠ EXPIRED
+                          </span>
+                        ) : n.daysLeft ? (
+                          <span className="text-xs text-yellow-400">{n.daysLeft}d left</span>
+                        ) : (
+                          <span className="text-xs text-green-400">✓ Valid</span>
+                        )}
+                      </td>
+                      {/* Flags */}
+                      <td className="px-4 py-3">
+                        <div className="flex gap-1 flex-wrap">
+                          {n.flags.map((f) => (
+                            <span
+                              key={f}
+                              className={`text-xs font-bold px-1.5 py-0.5 rounded ${flagBadge(f)}`}
+                            >
+                              {f}
+                            </span>
+                          ))}
+                        </div>
+                      </td>
+                    </tr>
+                  )
+                })
+              )}
+            </tbody>
+          </table>
+        </div>
 
-        {/* ── Footer ── */}
-        <div className="px-4 py-2 border-t border-gray-800 text-xs text-gray-500 flex gap-4">
+        {/* ── Footer pinned below table grid ── */}
+        <div className="px-4 py-2 border-t border-gray-800 text-xs text-gray-500 flex gap-4 flex-shrink-0 bg-gray-900">
           <span>Showing {filtered.length} of {nationalsData.length}</span>
           <span>CR = Criminal Record</span>
           <span>OS = Overstay</span>
