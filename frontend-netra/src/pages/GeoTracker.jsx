@@ -22,7 +22,9 @@ export default function App() {
             <p className="text-xs text-gray-400"></p>
           </div>
         </div>
-        
+        <span className="text-xs text-gray-500 bg-gray-800 px-3 py-1 rounded-full">
+          Quick Start Demo
+        </span>
       </header>
 
       {/* ── Body: sidebar + map ── */}

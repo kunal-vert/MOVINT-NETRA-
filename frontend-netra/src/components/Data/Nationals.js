@@ -583,6 +583,35 @@ const nationalsData = [
     visitHistory: [
       { visit: 1, location: "Guwahati", zone: "Assam", from: "2026-05-28", to: "2026-06-02", checkpost: "LGBI Airport", note: "Accompanied by state security detail" },
     ],
+  },
+  {
+    id: 21,
+    passportId: "AA99881122",
+    name: "Fahad Al-Saud",
+    nationality: "Saudi Arabia",
+    countryCode: "SA",
+    occupation: "Investor",
+    visaType: "business visa",
+    neVisits: 1,
+    lastLocation: "Guwahati",
+    lastSeen: "2026-06-02",
+    riskScore: 50,
+    riskLevel: "MEDIUM",
+    passportExpiry: "2029-03-10",
+    daysLeft: null,
+    dob: "1972-08-05",
+    gender: "Male",
+    permitDays: 90,
+    reasonToVisit: "Healthcare Infrastructure Investment",
+    overstay: false,
+    flags: ["EX"],
+    riskReasons: [
+      "High net-worth individual, requires VIP security protocol coordination",
+      "Meeting with high-level state ministers",
+    ],
+    visitHistory: [
+      { visit: 1, location: "Guwahati", zone: "Assam", from: "2026-05-28", to: "2026-06-02", checkpost: "LGBI Airport", note: "Accompanied by state security detail" },
+    ],
   }
 ];
 
