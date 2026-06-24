@@ -243,8 +243,8 @@ const Nationals = () => {
       </div>
 
       {/* ── Table ── */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-        <table className="w-full text-sm">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl ">
+        <table className="w-full text-sm ">
           <thead>
             <tr className="text-xs text-gray-500 uppercase tracking-widest border-b border-gray-800 bg-gray-950">
               <th className="text-left px-4 py-3">Name</th>
