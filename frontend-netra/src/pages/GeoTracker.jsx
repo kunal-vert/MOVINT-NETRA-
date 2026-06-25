@@ -1,12 +1,7 @@
 import LeafletMap from '../components/GeoTracker/LeafletMap'
 import "../components/GeoTracker/Leaflet.theme.css";
 
-const FEATURES = [
-  { icon: '📍', label: 'Marker', desc: 'Click the marker to open a popup' },
-  { icon: '🔴', label: 'Circle', desc: '500m radius circle in red' },
-  { icon: '🔷', label: 'Polygon', desc: 'A triangle polygon shape' },
-  { icon: '🖱️', label: 'Click Event', desc: 'Click anywhere on the map to see coordinates' },
-]
+
 
 export default function App() {
   return (
