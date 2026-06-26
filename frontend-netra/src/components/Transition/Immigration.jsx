@@ -12,6 +12,7 @@ const [form, setform] = useState([
     
 ])
 
+const [Details, setDetails] = useState(second)
 
 
 
@@ -20,8 +21,8 @@ const [form, setform] = useState([
 
 
 
-const SubmitDeploy = () =>{
-
+const SubmitHandler = (e) =>{
+       e.preventDefault()
 }
 
 
@@ -45,6 +46,11 @@ const SubmitDeploy = () =>{
                 </div>
 
                 <div className='px-3 pb-6'>
+                    <form action=""
+                    onClick={SubmitHandler}
+                    
+                    >
+                    
 
                     <div className='my-3'>
                         <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>Passport ID</h3>
@@ -162,6 +168,7 @@ const SubmitDeploy = () =>{
                         </button>
 
                     </div>
+                    </form>
 
                 </div>
             </div>
