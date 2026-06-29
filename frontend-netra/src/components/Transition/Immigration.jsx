@@ -29,12 +29,33 @@ const [Error, setError] = useState('')
 
 
 
-const SubmitHandler = (e) =>{
+const ChangeHandler = (e) =>{
     const {name , value} = e.target
     setForm({...Form, [name]: value})
      setError('')
 }
 
+const SubmitDeploy = () =>{
+    if (
+      form.passportNumber.trim() === '' ||
+      form.fullName.trim() === '' ||
+      form.nationality.trim() === '' ||
+      form.occupation.trim() === '' ||
+      form.reasonToVisit.trim() === '' ||
+      form.priorVisits.trim() === '' ||
+      form.passportExpiry === '' ||
+      form.gender === '' ||
+      form.dob === '' ||
+      form.visaType === ''
+    )
+    {
+      setError('⚠️ All fields are required before deploying!')
+      return
+    }
+    setDetails([...Details, { ...form, id: Date.now() }])
+    setform(emptyForm)
+    setError('')
+}
 
 
 
