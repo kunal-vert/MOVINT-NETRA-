@@ -47,12 +47,11 @@ class Foreign_National(Base):
         nullable=False,
         server_default=func.now()
     )
-
     #------Relationships---------------------
-    class Visit_History:
-        __tablename__ = "visit_history"
+class Visit_History:
+    __tablename__ = "visit_history"
 
-        visit_id: Mapped[int]   =   mapped_column(Integer, primary_key=True, index=True)
+    visit_id: Mapped[int]   =   mapped_column(Integer, primary_key=True, index=True)
     passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
     ilp_permit_id: Mapped[str | None] = mapped_column(ForeignKey("ilp_permits.ilp_permit_id"),    nullable=True,  index=True)
 
@@ -62,7 +61,7 @@ class Foreign_National(Base):
 
     city:          Mapped[str]        = mapped_column(String(100), nullable=False)
     area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
-    entry_point:   Mapped[str ] = mapped_column(String(200), nullable=False default="kolkata")
+    entry_point:   Mapped[str ] = mapped_column(String(200),  default="Netaji Subhas chandra Boss international Airport")
     entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
     exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
     duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
@@ -72,35 +71,12 @@ class Foreign_National(Base):
     notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
 
 
+       
+
+   
+
     # visit history of nationals means if they ever came to this region then we will have the data bout them
-    class Visit_History(Base):
-        visit_id:      Mapped[int]        = mapped_column(Integer, primary_key=True, index=True)
-        passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
-        
 
-         # ── For chip display on Visit History page ───────────────── for viewing the entire history
-        visit_year:    Mapped[int | None] = mapped_column(Integer,     nullable=True)   # "2021"
-        state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
-        city:          Mapped[str]        = mapped_column(String(100), nullable=False)
-        area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
-        entry_point:   Mapped[str | None] = mapped_column(String(200), nullable=True)
-        # entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
-        exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
-        duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
-        visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
-        overstayed:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=False)
-        is_current:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=True)
-        notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
-
-
-         # ── Relationships ───────────────────────────────────────── need to add further
-    national:   Mapped[Foreign_National]           = relationship(back_populates="visits")
-    # ilp_permit: Mapped[IlpPermit | None]          = relationship(back_populates="visits")
-    tracking:   Mapped[list[LocationTracking]]    = relationship(
-        back_populates="visit",
-        cascade="all, delete-orphan",
-        order_by="LocationTracking.logged_at"
-    )
 
 class LocationTracking(Base):
     __tablename__ = "location_tracking"
