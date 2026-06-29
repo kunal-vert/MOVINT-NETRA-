@@ -1,75 +1,100 @@
 import React from 'react'
 
 const riskColors = {
-    HIGH:   { bg: 'bg-red-800 border-red-950',       text: 'text-orange-500' },
-    MEDIUM: { bg: 'bg-yellow-800 border-yellow-950',  text: 'text-yellow-400' },
-    LOW:    { bg: 'bg-green-900 border-green-950',    text: 'text-green-400'  },
+    HIGH: { bg: 'bg-red-800 border-red-950', text: 'text-orange-500' },
+    MEDIUM: { bg: 'bg-yellow-800 border-yellow-950', text: 'text-yellow-400' },
+    LOW: { bg: 'bg-green-900 border-green-950', text: 'text-green-400' },
 }
 
 const ImmigrationRight = ({ data }) => {
 
-    const risk = riskColors[data.riskLevel]
+    const riskLevel = data.riskLevel || "LOW"
+
+    const risk = riskColors[riskLevel] || {
+        bg: 'bg-gray-800 border-gray-700',
+        text: 'text-gray-400'
+    }
 
     return (
-       <div className='  bg-gray-900  rounded-xl p-6 flex flex-col gap-8'>
+        <div className='bg-gray-900 rounded-xl p-6 flex flex-col gap-8'>
 
+            {/* Header */}
             <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-4">
-                    <h1 className="text-2xl bg-gray-700 font-[font1] text-gray-500 rounded-[3px] px-2">{data.countryCode}</h1>
-                    <h1 className="text-2xl font-bold text-white">{data.fullName}</h1>
+                    <h1 className="text-2xl bg-gray-700 font-[font1] text-gray-500 rounded-[3px] px-2">
+                        {data.countryCode || "N/A"}
+                    </h1>
+
+                    <h1 className="text-2xl font-bold text-white">
+                        {data.fullName || "Unknown"}
+                    </h1>
                 </div>
+
                 <div className="flex items-center gap-4 text-gray-500 text-2xl font-[font2]">
-                    <span>{data.passportNumber}</span>
-                    <span>{data.nationality}</span>
+                    <span>{data.passportNumber || "N/A"}</span>
+                    <span>{data.nationality || "N/A"}</span>
                 </div>
             </div>
 
+            {/* Risk Box */}
             <div className={`${risk.bg} border-[3px] rounded-[7px] p-5`}>
-                <h1 className='text-2xl text-gray-400 font-[font2]'>Risk Assessment</h1>
+                <h1 className='text-2xl text-gray-400 font-[font2]'>
+                    Risk Assessment
+                </h1>
+
                 <div className='flex items-center gap-x-2.5'>
-                    <span className={`text-5xl font-bold ${risk.text}`}>{data.riskScore}</span>
-                    <span className={`mx-2 text-3xl font-bold ${risk.text}`}>{data.riskLevel}</span>
+                    <span className={`text-5xl font-bold ${risk.text}`}>
+                        {data.riskScore || "0"}
+                    </span>
+
+                    <span className={`mx-2 text-3xl font-bold ${risk.text}`}>
+                        {riskLevel}
+                    </span>
                 </div>
+
                 <div className='my-7 border-2 text-gray-300 border-black w-fit px-1.5 bg-gray-700 rounded-full text-center'>
-                    <h1>{data.riskReason}</h1>
+                    <h1>{data.riskReason || "No risk detected"}</h1>
                 </div>
             </div>
 
+            {/* Details */}
             <div className="grid grid-cols-2 lg:grid-cols-3 gap-y-8 text-white">
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Occupation</h2>
-                    <p className="font-semibold text-lg mx-1 ">{data.occupation}</p>
+                    <p className="font-semibold text-lg">{data.occupation || "N/A"}</p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Nationality</h2>
-                    <p className="font-semibold text-lg">{data.nationality}</p>
+                    <p className="font-semibold text-lg">{data.nationality || "N/A"}</p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Date of Birth</h2>
-                    <p className="font-semibold text-lg">{data.dob}</p>
+                    <p className="font-semibold text-lg">{data.dob || "N/A"}</p>
                 </div>
 
                 <div>
-                    <h2 className="text-gray-500 uppercase tracking-wider text-sm">Visa Method</h2>
-                    <p className="font-semibold text-lg">{data.visaMethod}</p>
+                    <h2 className="text-gray-500 uppercase tracking-wider text-sm">Visa Type</h2>
+                    <p className="font-semibold text-lg">{data.visaType || "N/A"}</p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Permit Days</h2>
-                    <p className="font-semibold text-lg">{data.permitDays} days</p>
+                    <p className="font-semibold text-lg">{data.permitDays || "0"} days</p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Reason to Visit</h2>
-                    <p className="font-semibold text-lg">{data.reasonToVisit}</p>
+                    <p className="font-semibold text-lg">{data.reasonToVisit || "N/A"}</p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Passport Expiry</h2>
-                    <p className="font-semibold text-lg text-yellow-400">{data.passportExpiry} ({data.daysLeft}d left)</p>
+                    <p className="font-semibold text-lg text-yellow-400">
+                        {data.passportExpiry || "N/A"} ({data.daysLeft || "0"}d left)
+                    </p>
                 </div>
 
                 <div>
@@ -81,7 +106,9 @@ const ImmigrationRight = ({ data }) => {
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Prior Visits</h2>
-                    <p className="font-semibold text-lg text-orange-400">{data.priorVisits}</p>
+                    <p className="font-semibold text-lg text-orange-400">
+                        {data.priorVisits || "0"}
+                    </p>
                 </div>
 
             </div>

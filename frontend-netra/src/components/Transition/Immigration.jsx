@@ -1,10 +1,13 @@
 import React, { useState } from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
 import ImmigrationRight from './ImmigrationRight'
-import visitors from '../Data/visitors'
+// import visitors from '../Data/visitors'
 
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
+
+const ErrorInputClass = "border-red-500"
+const normalInputClass = "border-gray-700"
 
 const EmptyForm = {
     passportNumber: '',
@@ -108,7 +111,7 @@ const Immigration = () => {
                                 type="text"
                                 name="fullName"
                                 placeholder="Enter full name as on passport"
-                                className={`${inputClass} ${error && !Form.fullName.trim() ? ErrorInputClass : normalInputClass}`}
+                                className={`${inputClass} ${Error && !Form.fullName.trim() ? ErrorInputClass : normalInputClass}`}
                                 value={Form.fullName}
                                 onChange={ChangeHandler}
                             />
@@ -178,10 +181,10 @@ const Immigration = () => {
                             <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
                                 value={Form.gender}
                                 onChange={ChangeHandler}>
-                                <option>Select gender</option>
-                                <option>Male</option>
-                                <option>Female</option>
-                                <option>Other</option>
+                                <option value=''>Select gender</option>
+                                <option value="Male">Male</option>
+                                <option value="Female">Female</option>
+                                <option value="Other">Other</option>
                             </select>
                         </div>
 
@@ -190,7 +193,7 @@ const Immigration = () => {
                             <input
                                 type="date"
                                 name="dob"
-                                className={`${inputClass} ${Error && !Form.dob ? errorInputClass : normalInputClass}`}
+                                className={`${inputClass} ${Error && !Form.dob ? ErrorInputClass : normalInputClass}`}
                                 value={Form.dob}
                                 onChange={ChangeHandler}
                             />
@@ -198,16 +201,16 @@ const Immigration = () => {
 
                         <div className='my-3'>
                             <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>Visa Type</h3>
-                            <select name="visaType" className={`${selectClass} ${Error && !Form.visaType ? errorInputClass : normalInputClass}`}
+                            <select name="visaType" className={`${selectClass} ${Error && !Form.visaType ? ErrorInputClass : normalInputClass}`}
                                 value={Form.visaType}
                                 onChange={ChangeHandler}>
-                                <option>Select visa type</option>
-                                <option>Tourist</option>
-                                <option>Business</option>
-                                <option>Student</option>
-                                <option>Research</option>
-                                <option>Diplomatic</option>
-                                <option>Transit</option>
+                                <option value=''>Select visa type</option>
+                                <option value="Tourist">Tourist</option>
+                                <option value="Business">Business</option>
+                                <option value="Student">Student</option>
+                                <option value="Research">Research</option>
+                                <option value="Diplomatic">Diplomatic</option>
+                                <option value="Transit">Transit</option>
                             </select>
                         </div>
 
