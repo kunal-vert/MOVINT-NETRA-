@@ -53,22 +53,46 @@ class Visit_History:
 
     visit_id: Mapped[int]   =   mapped_column(Integer, primary_key=True, index=True)
     passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
-    ilp_permit_id: Mapped[str | None] = mapped_column(ForeignKey("ilp_permits.ilp_permit_id"),    nullable=True,  index=True)
-
     # ── For chip display on Visit History page -----------------
     visit_year:    Mapped[int | None] = mapped_column(Integer,     nullable=True)   # "2021"
     state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
 
     city:          Mapped[str]        = mapped_column(String(100), nullable=False)
-    area:          Mapped[str | None] = mapped_column(String(100), nullable=True)
+   
     entry_point:   Mapped[str ] = mapped_column(String(200),  default="Netaji Subhas chandra Boss international Airport")
     entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
     exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
     duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
     visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
     overstayed:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=False)
-    is_current:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=True)
+  
     notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
+
+
+class MOVEMENT_LOG:
+    __tablename__ = "movement_logs" 
+
+    movement_id :Mapped[int] = mapped_column(Integer, primary_key= True)
+
+    passport_id: Mapped[str] =  mapped_column(
+        ForeignKey("foreign_nationals.passport_id"),
+        nullable=False,
+        index=True
+    )  
+
+    movement_type: Mapped[str] = mapped_column(String(50), nullable=False)
+
+    location: Mapped[str] = mapped_column(String(200), nullable=False)
+
+
+    delay_days: Mapped[int] = mapped_column(Integer, default=0)
+
+    notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    created_at: Mapped[DateTime] = mapped_column(
+        DateTime(timezone=True),
+        server_default=func.now(),
+    )
 
 
        
@@ -78,12 +102,7 @@ class Visit_History:
     # visit history of nationals means if they ever came to this region then we will have the data bout them
 
 
-class LocationTracking(Base):
-    __tablename__ = "location_tracking"
 
-    tracking_id:   Mapped[int]          = mapped_column(Integer, primary_key=True, index=True)
-    passport_id:   Mapped[str]          = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
-    visit_id:      Mapped[int | None]   = mapped_column(ForeignKey("visit_history.visit_id"),        nullable=True,  index=True)
 
 
 
