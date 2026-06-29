@@ -6,24 +6,37 @@ import visitors from '../Data/visitors'
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 
+const EmptyForm = {
+     passportNumber: '',
+     fullName: '',
+        nationality: '',
+        occupation: '',
+        reasonToVisit: '',
+        priorVisits: '',
+        passportExpiry: '',
+        gender: '',
+        dob: '',
+        visaType: ''
+}
 const Immigration = () => {
 
-const [form, setform] = useState([
-    'passport_ID'
-])
 
+const [Form, setForm] = useState(EmptyForm)
 const [Details, setDetails] = useState(second)
-
-
-
+const [Error, setError] = useState('')
 
 
 
 
 
 const SubmitHandler = (e) =>{
-       e.preventDefault()
+    const {name , value} = e.target
+    setForm({...Form, [name]: value})
+     setError('')
 }
+
+
+
 
 
 
