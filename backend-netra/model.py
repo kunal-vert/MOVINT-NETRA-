@@ -1,11 +1,17 @@
 from __future__ import annotations
+from datetime import datetime
 from sqlalchemy import(
-    Boolean, Date, DateTime, ForeignKey, Integer, Numeric, String, Text, func
+    Boolean, Date, DateTime, ForeignKey, Integer, Numeric, String, Text, func, Float,JSON
 )
+
+
+
 
 from sqlalchemy.orm import mapped_column, Mapped, relationship
 
 from database import Base
+
+
 
 class Foreign_National(Base):
     __tablename__ = "foreign_nationals"
@@ -23,6 +29,13 @@ class Foreign_National(Base):
     #Risk or flag before He/She arrives
     criminal_record:   Mapped[bool]       = mapped_column(Boolean, nullable=False, default=False)
 
+
+    # For risk score and ML/AI in future where predication can happen
+
+    risk_score: Mapped[int]  = mapped_column(int, default=0)
+    risk_level: Mapped[str]  = mapped_column(String, default= "LOW")
+    risk_reason:Mapped[str | None] = mapped_column(String, nullable=True)
+
     #Visa Means
     visa_permit_days:  Mapped[int]        = mapped_column(Integer,     nullable=False, default=7)
     visa_expiry:       Mapped[str | None] = mapped_column(Date,        nullable=True)
@@ -33,12 +46,14 @@ class Foreign_National(Base):
         String(200), nullable=False,
         default="Netaji Subhas Chandra Bose International Airport, Kolkata"
     )
-    # destination_state: Mapped[str | None] = mapped_column(String(100), nullable=True)
-    # destination_city:  Mapped[str | None] = mapped_column(String(100), nullable=True)
-    # hotel_name:        Mapped[str | None] = mapped_column(String(200), nullable=True)
-    # employer_org:      Mapped[str | None] = mapped_column(String(200), nullable=True)
 
-    # >>>>>>>>>>>>> NE Summary >>>> This will give the and provide the Anomloy detection later---------
+    created_at: Mapped[datetime] = mapped_column(
+        DateTime,
+        default=datetime.utcnow
+    )
+   
+
+    # >>>>>>>>>>>>> NE Summary >>>> This will give the data and provide the Anomloy detection later---------
 
     prior_ne_visits:  Mapped[int]   = mapped_column(Integer, nullable=False, default= 0 )
 
@@ -88,6 +103,9 @@ class MOVEMENT_LOG:
     delay_days: Mapped[int] = mapped_column(Integer, default=0)
 
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
+
+    lat: Mapped[float] = mapped_column(Float)
+    lng: Mapped[float] = mapped_column(Float)
 
     created_at: Mapped[DateTime] = mapped_column(
         DateTime(timezone=True),
