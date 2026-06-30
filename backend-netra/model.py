@@ -1,7 +1,7 @@
 from __future__ import annotations
-from datetime import datetime
+from datetime import datetime,date,UTC
 from sqlalchemy import(
-    Boolean, Date, DateTime, ForeignKey, Integer, Numeric, String, Text, func, Float,JSON
+    Boolean, Date, DateTime, ForeignKey, Integer,String, Text, Float,
 )
 
 
@@ -13,55 +13,73 @@ from database import Base
 
 
 
-class Foreign_National(Base):
+class ForeignNational(Base):
     __tablename__ = "foreign_nationals"
+      # Internal database key
+    id: Mapped[int] = mapped_column(
+        Integer,
+        primary_key=True
+       
+    )
 
     # Information bout him/her:
-    passport_id:       Mapped[str]        = mapped_column(String(30),  primary_key=True)
+
+    # Real-world unique identifier
+    passport_id:       Mapped[str]        = mapped_column(String(30),  unique=True, nullable=False, index=True)
+
+    # Personal details
     full_name:         Mapped[str]        = mapped_column(String(100), nullable=False)
+
     nationality:       Mapped[str]        = mapped_column(String(60),  nullable=False)
+
     gender:            Mapped[str]        = mapped_column(String(10),  nullable=False, default="Unknown")
-    date_of_birth:     Mapped[str]        = mapped_column(Date,        nullable=False)
-    passport_expiry:   Mapped[str]        = mapped_column(Date,        nullable=False)
+
+    date_of_birth:     Mapped[date]        = mapped_column(Date,        nullable=False)
+
+
     occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)
-    country_code:      Mapped[str]        = mapped_column(String (50),  nullable=False   )
+
+   
+    country_code:      Mapped[str]        = mapped_column(String (4),  nullable=False   )
 
     #Risk or flag before He/She arrives
     criminal_record:   Mapped[bool]       = mapped_column(Boolean, nullable=False, default=False)
 
+    prior_ne_visits:  Mapped[int]   = mapped_column(Integer, nullable=False, default= 0 )
 
-    # For risk score and ML/AI in future where predication can happen
 
-    risk_score: Mapped[int]  = mapped_column(int, default=0)
-    risk_level: Mapped[str]  = mapped_column(String, default= "LOW")
-    risk_reason:Mapped[str | None] = mapped_column(String, nullable=True)
+    # Risk engine / future ML prediction
 
-    #Visa Means
-    visa_permit_days:  Mapped[int]        = mapped_column(Integer,     nullable=False, default=7)
-    visa_expiry:       Mapped[str | None] = mapped_column(Date,        nullable=True)
+    risk_score: Mapped[int]  = mapped_column(Integer, default=0)
+
+    risk_level: Mapped[str]  = mapped_column(String(20), default= "LOW")
+
+    risk_reason:Mapped[str | None] = mapped_column(String(255), nullable=True)
+
+
+    #Visa Information
+    visa_permit_days:  Mapped[int]        = mapped_column(Integer,   nullable=False, default=7)
+
+    visa_expiry:   Mapped[date | None] = mapped_column(Date,    nullable=True)
+
     reason_to_visit:   Mapped[str | None] = mapped_column(String(100), nullable=True)
 
     #--------- Entry Details(from Entry form)------- In future I have to update the default airport cause it could be other Airports Inside the NE:
+    
+    # Entry details
     india_entry_point: Mapped[str]        = mapped_column(
         String(200), nullable=False,
         default="Netaji Subhas Chandra Bose International Airport, Kolkata"
     )
-
+     # Audit trail
     created_at: Mapped[datetime] = mapped_column(
-        DateTime,
-        default=datetime.utcnow
+        DateTime(timezone=True),
+        default= lambda:datetime.now(UTC)
     )
    
 
-    # >>>>>>>>>>>>> NE Summary >>>> This will give the data and provide the Anomloy detection later---------
 
-    prior_ne_visits:  Mapped[int]   = mapped_column(Integer, nullable=False, default= 0 )
-
-    created_at: Mapped[str] = mapped_column(
-        DateTime(timezone=True),
-        nullable=False,
-        server_default=func.now()
-    )
+   
     #------Relationships---------------------
 class Visit_History:
     __tablename__ = "visit_history"
