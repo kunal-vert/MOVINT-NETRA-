@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import datetime,date,UTC
 from sqlalchemy import(
-    Boolean, Date, DateTime, ForeignKey, Integer,String, JSON,Text
+    Boolean, Date, DateTime, ForeignKey, Integer,String, JSON,Text, Float
 )
 
 
@@ -76,6 +76,12 @@ class ForeignNational(Base):
         DateTime(timezone=True),
         default= lambda:datetime.now(UTC)
     )
+
+
+    visits: Mapped[list["VisitHistory"]] = relationship(
+    back_populates="national",
+    cascade="all, delete-orphan"
+)
    
 
 
@@ -126,24 +132,36 @@ class VisitHistory(Base):
         JSON,
         default=list
     )
+
+    national: Mapped["ForeignNational"] = relationship(
+    back_populates="visits"
+)
+
+movements: Mapped[list["LocationTracking"]] = relationship(
+    back_populates="visit",
+    cascade="all, delete-orphan"
+)
     
   
     
 
 
-class MOVEMENT_LOG:
-    __tablename__ = "movement_logs" 
+class LocationTracking(Base):
+    __tablename__ = "location_tracking" 
 
-    movement_id :Mapped[int] = mapped_column(Integer, primary_key= True)
+    id :Mapped[int] = mapped_column(Integer, primary_key= True)
 
-    passport_id: Mapped[str] =  mapped_column(
-        ForeignKey("foreign_nationals.passport_id"),
+    visit_id: Mapped[int] =  mapped_column(
+        ForeignKey("visit_history.id"),
         nullable=False,
         index=True
     )  
 
-    movement_type: Mapped[str] = mapped_column(String(50), nullable=False)
+    # CHECKPOST / BORDER / HOTEL / TOLL / RAIL
+    operator_type: Mapped[str] = mapped_column(String(50), nullable=False)
 
+
+    # Human-readable location string (e.g. "Dawki Checkpost, Meghalaya")
     location: Mapped[str] = mapped_column(String(200), nullable=False)
 
 
@@ -151,13 +169,18 @@ class MOVEMENT_LOG:
 
     notes: Mapped[str | None] = mapped_column(Text, nullable=True)
 
-    lat: Mapped[float] = mapped_column(Float)
-    lng: Mapped[float] = mapped_column(Float)
+    lat: Mapped[float] = mapped_column(Float, nullable=False)
+    lng: Mapped[float] = mapped_column(Float, nullable=False)
 
-    created_at: Mapped[DateTime] = mapped_column(
+    timestamp: Mapped[datetime] = mapped_column(
         DateTime(timezone=True),
-        server_default=func.now(),
+        default=lambda: datetime.now(UTC)
     )
+
+
+    visit: Mapped["VisitHistory"] = relationship(
+    back_populates="movements"
+)
 
 
        
