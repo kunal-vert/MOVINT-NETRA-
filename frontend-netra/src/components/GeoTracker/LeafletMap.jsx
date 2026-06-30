@@ -16,13 +16,13 @@ const cityData = [
 // });
 
 const BasicMap = () => {
-  // New Delhi ke coordinates (Latitude, Longitude)
-  const centreposition = [28.6139, 77.2190]
+  // As default aaha hum Netaji Subhas chandra Airport International Airport ke coordinates (Latitude, Longitude)
+  const centreposition = [22.654, 88.446]
 
   return (
     // 1. MapContainer: Yeh hamara Pizza Base (khali canvas) hai. 
     // Isme height dena bohot zaroori hai, warna map dikhega hi nahi!
-    <MapContainer  center={centreposition} zoom={13} style={{ height: "500px", width: "100%" }}>
+    <MapContainer  center={centreposition} zoom={14} style={{ height: "500px", width: "100%" }}>
       
       {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
       // Yeh URL internet se chote-chote map ke square images fetch karta hai. */}
