@@ -1,7 +1,7 @@
 from __future__ import annotations
 from datetime import datetime,date,UTC
 from sqlalchemy import(
-    Boolean, Date, DateTime, ForeignKey, Integer,String, Text, Float,
+    Boolean, Date, DateTime, ForeignKey, Integer,String, JSON,Text
 )
 
 
@@ -81,25 +81,54 @@ class ForeignNational(Base):
 
    
     #------Relationships---------------------
-class Visit_History:
+class VisitHistory(Base):
+
     __tablename__ = "visit_history"
 
-    visit_id: Mapped[int]   =   mapped_column(Integer, primary_key=True, index=True)
-    passport_id:   Mapped[str]        = mapped_column(ForeignKey("foreign_nationals.passport_id"), nullable=False, index=True)
-    # ── For chip display on Visit History page -----------------
-    visit_year:    Mapped[int | None] = mapped_column(Integer,     nullable=True)   # "2021"
-    state:         Mapped[str | None] = mapped_column(String(100), nullable=True)   # "Arunachal Pradesh"
+    id: Mapped[int]   =   mapped_column(Integer, primary_key=True)
 
-    city:          Mapped[str]        = mapped_column(String(100), nullable=False)
-   
-    entry_point:   Mapped[str ] = mapped_column(String(200),  default="Netaji Subhas chandra Boss international Airport")
-    entry_date:    Mapped[str]        = mapped_column(Date,        nullable=False)
-    exit_date:     Mapped[str | None] = mapped_column(Date,        nullable=True)
-    duration_days: Mapped[int]        = mapped_column(Integer,     nullable=False)
-    visit_number:  Mapped[int]        = mapped_column(Integer,     nullable=False)
-    overstayed:    Mapped[bool]       = mapped_column(Boolean,     nullable=False, default=False)
+    # Link to ForeignNational.id
+    foreign_national_id: Mapped[int] = mapped_column(
+        ForeignKey("foreign_nationals.id"),
+        nullable=False
+    )
+    
+
+    # Sequential visit number
+    visit_number: Mapped[int] = mapped_column(
+        Integer,
+        default=1
+    )
+
+
+     # Entry / Exit tracking
+    entry_date: Mapped[datetime] = mapped_column(
+        DateTime(timezone=True),
+        default=lambda: datetime.now(UTC)
+    )
+
+    exit_date: Mapped[datetime | None] = mapped_column(
+        DateTime(timezone=True),
+        nullable=True
+    )
+
+     # Flags
+    overstayed: Mapped[int] = mapped_column(
+        Integer,
+        default=0
+    )
+
+    issues_during_visit:   Mapped[str | None] = mapped_column(Text,  nullable=True)
+
+
+    # States visited during this trip
+    states_visited: Mapped[list[str]] = mapped_column(
+        JSON,
+        default=list
+    )
+    
   
-    notes:         Mapped[str | None] = mapped_column(Text,        nullable=True)
+    
 
 
 class MOVEMENT_LOG:
