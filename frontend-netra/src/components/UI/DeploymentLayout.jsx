@@ -7,7 +7,7 @@ const DeploymentLayout = () => {
             <div className="shrink-0">
                 <OperatingL />
             </div>
-            <div className="flex-1 overflow-hidden min-h-0">
+            <div className="flex-1 overflow-auto min-h-0">
                 <Outlet />
             </div>
         </div>

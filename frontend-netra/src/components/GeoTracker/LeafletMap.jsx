@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // CSS import karna mat bhoolna!
 // import { Icon } from 'leaflet';
@@ -15,7 +15,11 @@ const cityData = [
 //   iconSize: [40, 40], // Icon ki width aur height pixels mein
 // });
 
-const BasicMap = () => {
+const TrackMap = () => {
+
+  // const [first, setfirst] = useState(second)
+
+
   // As default aaha hum Netaji Subhas chandra Airport International Airport ke coordinates (Latitude, Longitude)
   const centreposition = [22.654, 88.446]
 
@@ -46,4 +50,4 @@ const BasicMap = () => {
   );
 };
 
-export default BasicMap;
+export default TrackMap;
