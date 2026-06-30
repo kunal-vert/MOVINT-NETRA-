@@ -52,12 +52,59 @@ const Checkpost = () => {
           </div>
 
         
-          <button
-            type="submit"
-            className="w-full py-3 mt-2 border-0 border-black bg-purple-600 hover:bg-purple-700 text-white rounded-md transition hover:cursor-pointer"
-          >
-            Deploy
-          </button>
+              <button
+              type="submit"
+              className="
+  font-[font1] text-2xl
+    w-full 
+    py-3 
+    mt-8 
+    relative 
+    inline-flex 
+    items-center 
+    justify-center 
+    gap-2 
+    rounded-lg 
+   
+    font-semibold 
+    text-white 
+    
+    from-purple-600 
+    to-indigo-600 
+    hover:from-purple-500 
+    hover:to-indigo-500 
+    active:from-purple-700 
+    active:to-indigo-700 
+    active:scale-[0.97] 
+    hover:scale-[1.02] 
+    hover:-translate-y-0.5 
+    hover:shadow-[0_0_25px_rgba(124,58,237,0.5)] 
+    shadow-lg 
+    shadow-purple-900/30 
+    transition-all 
+    duration-300 
+    ease-in-out 
+    focus:outline-none 
+    focus:ring-2 
+    focus:ring-purple-400 
+    focus:ring-offset-2 
+    focus:ring-offset-[#282020] 
+    cursor-pointer
+    overflow-hidden
+    group
+    border
+    border-white/10
+  "
+            >
+              <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+              <span className="relative z-10 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+              Deploy
+              </span>
+            </button>
 
         </form>
       </div>
