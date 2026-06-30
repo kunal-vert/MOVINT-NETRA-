@@ -69,9 +69,9 @@ const Borderguard = () => {
               />
             </div>
 
-<button
-  type="submit"
-  className="
+            <button
+              type="submit"
+              className="
   font-[font1] text-2xl
     w-full 
     py-3 
@@ -112,16 +112,16 @@ const Borderguard = () => {
     border
     border-white/10
   "
->
-  <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
-  <span className="relative z-10 flex items-center gap-2">
-    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
-      <path d="M5 12h14" />
-      <path d="m12 5 7 7-7 7" />
-    </svg>
-    Submit
-  </span>
-</button>
+            >
+              <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+              <span className="relative z-10 flex items-center gap-2">
+                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
+                  <path d="M5 12h14" />
+                  <path d="m12 5 7 7-7 7" />
+                </svg>
+                Submit
+              </span>
+            </button>
 
           </form>
         </div>

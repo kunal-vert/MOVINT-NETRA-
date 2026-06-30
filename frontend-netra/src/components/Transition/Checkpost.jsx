@@ -4,24 +4,24 @@ const Checkpost = () => {
   return (
     <div className="relative flex items-center justify-center min-h-screen w-full bg-black">
 
-     
+
       <img
         className="absolute inset-0 w-full h-full object-cover opacity-30"
         src="https://images.unsplash.com/photo-1780474980645-26c7bea72399?q=80&w=870&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
         alt="Checkpost Background"
       />
 
-     
+
       <div className="relative z-10 w-[90%] sm:w-[70%] lg:w-[50vw] p-8 bg-black/70 border-2 border-purple-600 rounded-xl ">
 
         <span className="block text-center text-white text-3xl font-bold mb-6">
           Checkpost
         </span>
 
-       
+
         <form className="space-y-4">
 
-         
+
           <div className="flex flex-col">
             <label className="text-white mb-1">Passport ID</label>
             <input
@@ -31,7 +31,7 @@ const Checkpost = () => {
             />
           </div>
 
-          
+
           <div className="flex flex-col">
             <label className="text-white mb-1">State</label>
             <input
@@ -41,7 +41,7 @@ const Checkpost = () => {
             />
           </div>
 
-         
+
           <div className="flex flex-col">
             <label className="text-white mb-1">Delay Days</label>
             <input
@@ -51,10 +51,10 @@ const Checkpost = () => {
             />
           </div>
 
-        
-              <button
-              type="submit"
-              className="
+
+          <button
+            type="submit"
+            className="
   font-[font1] text-2xl
     w-full 
     py-3 
@@ -95,16 +95,16 @@ const Checkpost = () => {
     border
     border-white/10
   "
-            >
-              <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
-              <span className="relative z-10 flex items-center gap-2">
-                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
-                  <path d="M5 12h14" />
-                  <path d="m12 5 7 7-7 7" />
-                </svg>
+          >
+            <span className="absolute inset-0 bg-white/0 group-hover:bg-white/10 transition-colors duration-300" />
+            <span className="relative z-10 flex items-center gap-2">
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className="transition-transform duration-300 group-hover:translate-x-0.5">
+                <path d="M5 12h14" />
+                <path d="m12 5 7 7-7 7" />
+              </svg>
               Deploy
-              </span>
-            </button>
+            </span>
+          </button>
 
         </form>
       </div>
