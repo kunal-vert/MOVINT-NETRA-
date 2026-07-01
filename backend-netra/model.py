@@ -30,7 +30,7 @@ class ForeignNational(Base):
 
     gender:            Mapped[str]        = mapped_column(String(10),  nullable=False, default="Unknown")
 
-    date_of_birth:     Mapped[date]        = mapped_column(Date,        nullable=False)
+    dob:     Mapped[date]        = mapped_column(Date, nullable=False)
 
 
     occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)
@@ -54,7 +54,9 @@ class ForeignNational(Base):
 
 
     #Visa Information
-    visa_permit_days:  Mapped[int]        = mapped_column(Integer,   nullable=False, default=7)
+    visa_type:        Mapped[str ]  = mapped_column(String(50),  nullable=False, default="e-visa")
+
+    visa_permit_days:  Mapped[int]        = mapped_column(Integer,   nullable=False, default=30)
 
     visa_expiry:   Mapped[date | None] = mapped_column(Date,    nullable=True)
 
@@ -74,6 +76,7 @@ class ForeignNational(Base):
     )
 
 
+    #------Relationships---------------------
     visits: Mapped[list["VisitHistory"]] = relationship(
     back_populates="national",
     cascade="all, delete-orphan"
@@ -82,7 +85,6 @@ class ForeignNational(Base):
 
 
    
-    #------Relationships---------------------
 class VisitHistory(Base):
 
     __tablename__ = "visit_history"
@@ -115,10 +117,12 @@ class VisitHistory(Base):
     )
 
      # Flags
-    overstayed: Mapped[int] = mapped_column(
-        Integer,
-        default=0
+    overstayed: Mapped[bool] = mapped_column(
+        Boolean,
+        default=False
     )
+
+    flagged:    Mapped[bool] = mapped_column(Boolean, default=False)
 
     issues_during_visit:   Mapped[str | None] = mapped_column(Text,  nullable=True)
 
@@ -130,13 +134,11 @@ class VisitHistory(Base):
     )
 
     national: Mapped["ForeignNational"] = relationship(
-    back_populates="visits"
-)
+    back_populates="visits")
 
-movements: Mapped[list["LocationTracking"]] = relationship(
+    movements: Mapped[list["LocationTracking"]] = relationship(
     back_populates="visit",
-    cascade="all, delete-orphan"
-)
+    cascade="all, delete-orphan")
     
   
     
