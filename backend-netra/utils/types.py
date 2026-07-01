@@ -1,0 +1,24 @@
+from typing import Annotated
+from pydantic import Field
+
+
+
+
+PassportId    = Annotated[str,  Field(max_length=30,  description="Passport number — unique real-world identifier")]
+FullName      = Annotated[str,  Field(max_length=100, description="Full name as printed on passport")]
+Nationality   = Annotated[str,  Field(max_length=60,  description="Country of citizenship")]
+Gender        = Annotated[str,  Field(max_length=10,  description="Male / Female / Other")]
+CountryCode   = Annotated[str,  Field(max_length=4,   description="ISO 3166-1 alpha-2 or alpha-3 code e.g. CHN")]
+Occupation    = Annotated[str,  Field(max_length=100, description="Declared profession")]
+RiskLevel     = Annotated[str,  Field(max_length=20,  description="LOW / MEDIUM / HIGH")]
+RiskReason    = Annotated[str,  Field(max_length=255, description="Pipe-separated reasons from risk engine")]
+VisaType      = Annotated[str,  Field(max_length=50,  description="Tourist / Business / Student / Research / Diplomatic / Transit")]
+ReasonToVisit = Annotated[str,  Field(max_length=100, description="Declared purpose of visit")]
+OperatorType  = Annotated[str,  Field(max_length=50,  description="CHECKPOST / BORDER / HOTEL / TOLL / RAIL")]
+Location      = Annotated[str,  Field(max_length=200, description="Human-readable location string e.g. CHECKPOST | Assam")]
+Latitude      = Annotated[float, Field(ge=-90,  le=90,  description="Latitude — must be valid geographic coordinate")]
+Longitude     = Annotated[float, Field(ge=-180, le=180, description="Longitude — must be valid geographic coordinate")]
+PermitDays    = Annotated[int,  Field(ge=1,           description="Visa permit days — minimum 1")]
+DelayDays     = Annotated[int,  Field(ge=0,           description="Days delayed at this location — cannot be negative")]
+PriorVisits   = Annotated[int,  Field(ge=0,           description="Number of prior NE visits — cannot be negative")]
+RiskScore     = Annotated[int,  Field(ge=0,  le=200,  description="Computed risk score — 0 to 200")]
