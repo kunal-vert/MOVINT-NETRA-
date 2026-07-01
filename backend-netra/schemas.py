@@ -29,48 +29,25 @@ RiskScore     = Annotated[int,  Field(ge=0,  le=200,  description="Computed risk
 
 
 
+
 #IMMIGRATION
 # POST /api/immigration/entry
 
 class ImmigrationEntryRequest(BaseModel):
-
-    passport_id: Annotated[str,
-                            Field(max_length=30, description="Unique passport number")]
+    passport_id:      PassportId
+    full_name:        FullName
+    nationality:      Nationality
+    gender:           Gender
+    dob:              date                            = Field(description="Date of birth — YYYY-MM-DD from date input")
+    country_code:     CountryCode                     = Field(default="N/A")
+    occupation:       Optional[Occupation]            = Field(default=None)
+    criminal_record:  bool                            = Field(default=False,    description="Pre-arrival criminal flag")
+    prior_ne_visits:  PriorVisits                     = Field(default=0)
+    visa_type:        VisaType                        = Field(default="e-visa")
+    visa_permit_days: PermitDays                      = Field(default=30)
+    visa_expiry:      Optional[date]                  = Field(default=None,     description="Visa expiry date — nullable")
+    reason_to_visit:  Optional[ReasonToVisit]         = Field(default=None)
     
-    FullName = Annotated[
-    str,
-    Field(max_length=100, description="Full legal name")]   
-
-    Nationality = Annotated[
-    str,
-    Field(max_length=60, description="Country of citizenship")]
-
-    Gender = Annotated[
-    str,
-    Field(max_length=10, description="Male / Female / Other")]
-    CountryCode = Annotated[
-    str,
-    Field(max_length=4, description="ISO country code")]
-
-    Occupation = Annotated[
-    str,
-    Field(max_length=100, description="Profession")]
-
-    VisaType = Annotated[
-    str,
-    Field(max_length=50, default="e-visa", description="Tourist / Business / Student")]
-
-    ReasonToVisit = Annotated[
-    str,
-    Field(max_length=100, description="Purpose of visit")]
-
-    Location = Annotated[
-    str,
-    Field(max_length=200, default="Netaji Subhas Chandra Bose International Airport, Kolkata", description="Readable location string")]
-
-    PermitDays = Annotated[
-    int,
-    Field(ge=1, default=30)]
 
     
 
