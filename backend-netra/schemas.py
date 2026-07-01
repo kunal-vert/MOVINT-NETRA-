@@ -51,5 +51,39 @@ class ImmigrationEntryRequest(BaseModel):
 
     
 
-    
 
+
+
+class ImmigrationEntryResponse(BaseModel):
+    # Identity
+    passport_id:      PassportId
+    full_name:        FullName
+    nationality:      Nationality
+    gender:           Gender
+    dob:              date
+    country_code:     CountryCode
+    occupation:       Optional[Occupation]
+    criminal_record:  bool
+
+    # Visa
+    visa_type:        VisaType
+    visa_permit_days: PermitDays
+    visa_expiry:      Optional[date]
+    reason_to_visit:  Optional[ReasonToVisit]
+    prior_ne_visits:  PriorVisits
+
+    # Risk — written by risk.py, returned to card
+    risk_score:  RiskScore
+    risk_level:  RiskLevel
+    risk_reason: Optional[RiskReason]
+
+
+
+     # Trip meta
+    is_returning:     bool  = Field(description="True = passport existed in DB before this entry")
+    past_visit_count: int   = Field(ge=0, description="Count of VisitHistory rows before this trip")
+    current_visit_id: int   = Field(ge=1, description="VisitHistory.id for this trip — Checkpost uses this")
+    overstay_flag:    bool  = Field(description="True = any past visit had overstayed=True")
+
+    class Config:
+        from_attributes = True
