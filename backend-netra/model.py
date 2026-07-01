@@ -1,15 +1,12 @@
 from __future__ import annotations
 from datetime import datetime,date,UTC
-from sqlalchemy import(
-    Boolean, Date, DateTime, ForeignKey, Integer,String, JSON,Text, Float
-)
-
-
-
+from sqlalchemy import(Boolean, Date, DateTime, ForeignKey, Integer,String, JSON,Text, Float)
 
 from sqlalchemy.orm import mapped_column, Mapped, relationship
-
 from database import Base
+
+
+
 
 
 
@@ -19,7 +16,6 @@ class ForeignNational(Base):
     id: Mapped[int] = mapped_column(
         Integer,
         primary_key=True
-       
     )
 
     # Information bout him/her:
