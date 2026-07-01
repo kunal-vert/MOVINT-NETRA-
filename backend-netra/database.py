@@ -5,13 +5,17 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 SQLALCHEMY_DATABASE_URL = ""
 
-engine = create_engine(SQLALCHEMY_DATABASE_URL)
+engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_pre_ping=True, echo=True)
 
 SessionLocal = sessionmaker(autoflush=False, autocommit = False, bind=engine)
 
 class Base (DeclarativeBase):
     pass
 
+ 
 def get_db():
-    with SessionLocal() as db:
+    db = SessionLocal()
+    try:
         yield db
+    finally:
+        db.close() 
