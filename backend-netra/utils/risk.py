@@ -37,7 +37,7 @@ def compute_risk (data: dict, past_visits: list) -> dict:
     # 4. Prior NE visit frequency 
     #  here in future we have to add more parameters like if subject goin' into same place with certain area of radius ... Though this will be ML part...:)   
 
-    # prior = int (data.get("prior_ne_visits") or 0)
+  
 
     prior = int(data.get("prior_ne_visits") or 0)
     if prior > 5:
