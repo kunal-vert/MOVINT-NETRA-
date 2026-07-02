@@ -36,11 +36,7 @@ class ImmigrationEntryRequest(BaseModel):
     gender:           Gender
     dob:              date                            = Field(description="Date of birth — YYYY-MM-DD from date input")
     country_code:     CountryCode                     = Field(default="N/A")
-<<<<<<< HEAD
     occupation:       Occupation
-=======
-    occupation:       Occupation            
->>>>>>> 57a85c05bb6356e061eea272786ae3ac0f6b41b1
     criminal_record:  bool                            = Field(default=False,    description="Pre-arrival criminal flag")
     prior_ne_visits:  PriorVisits                     = Field(default=0)
     visa_type:        VisaType                        = Field(default="e-visa")
@@ -62,7 +58,7 @@ class ImmigrationEntryResponse(BaseModel):
     gender:           Gender
     dob:              date
     country_code:     CountryCode
-    occupation:       Optional[Occupation]
+    occupation:       Occupation
     criminal_record:  bool
 
     # Visa
