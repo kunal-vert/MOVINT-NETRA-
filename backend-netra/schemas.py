@@ -1,7 +1,7 @@
 from __future__ import annotations
 from pydantic import BaseModel, Field
 from datetime import date, datetime
-from typing import Optional,Annotated,List
+from typing import Optional,Annotated
 from utils.types import (
     PassportId,
     FullName,
@@ -93,20 +93,20 @@ class LocationPingRequest(BaseModel):
     # lat/lng are resolved from NE_STATE_COORDS in React —
     # operator picks a state from dropdown, coordinates come automatically.
     
-      passport_id:   PassportId
-      operator_type: OperatorType
-      state:         Annotated[str, Field(max_length=60, description="NE state name from dropdown")]
-      lat:           Latitude
-      lng:           Longitude
-      delay_days:    DelayDays    = Field(default=0)
-      notes:         Optional[str] = Field(default=None, description="Free text — no length limit (Text column)")
+    passport_id:   PassportId
+    operator_type: OperatorType
+    state:         Annotated[str, Field(max_length=60, description="NE state name from dropdown")]
+    lat:           Latitude
+    lng:           Longitude
+    delay_days:    DelayDays    = Field(default=0)
+    notes:         Optional[str] = Field(default=None, description="Free text — no length limit (Text column)")
    
 
 
 class LocationPingResponse(BaseModel):
      success: bool
      message: str
-     full_name: str
+     full_name: FullName
      risk_level: RiskLevel
      risk_score: RiskScore
      ping_id: int =  Field(ge=1, description="LocationTracking.id of the ping just inserted")
@@ -116,6 +116,7 @@ class LocationPingResponse(BaseModel):
 # ye leaftlet map ke liya hain -- draws markers + polylines
 
 class TrailPoint(BaseModel):
+    id:            int           = Field(ge=1)
     operator_type: OperatorType
     location:      Location
     lat:           Latitude
