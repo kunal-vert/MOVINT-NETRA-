@@ -110,6 +110,23 @@ class LocationPingResponse(BaseModel):
      risk_level: RiskLevel
      ping_id: int =  Field(ge=1, description="LocationTracking.id of the ping just inserted")
 
+
+# GET /api/location/trail/{passport_id}
+# ye leaftlet map ke liya hain -- draws markers + polylines
+
+class TrailPoint(BaseModel):
+    operator_type: OperatorType
+    location:      Location
+    lat:           Latitude
+    lng:           Longitude
+    delay_days:    DelayDays
+    timestamp:     datetime      = Field(description="UTC timestamp of the ping")
+    notes:         Optional[str] = Field(default=None)
+
+    class Config:
+         from_attributes = True
+
+
            
 
          
