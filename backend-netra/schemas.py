@@ -127,6 +127,16 @@ class TrailPoint(BaseModel):
          from_attributes = True
 
 
+class NationalTrailResponse(BaseModel):
+    passport_id:      PassportId
+    full_name:        FullName
+    risk_level:       RiskLevel
+    risk_score:       RiskScore
+    current_visit_id: int              = Field(ge=1)
+    trail:            list[TrailPoint] = Field(description="Ordered pings for current trip — empty list if national hasn't moved yet")
+              
+
+
            
 
          
