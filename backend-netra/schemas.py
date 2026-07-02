@@ -108,6 +108,7 @@ class LocationPingResponse(BaseModel):
      message: str
      full_name: str
      risk_level: RiskLevel
+     risk_score: RiskScore
      ping_id: int =  Field(ge=1, description="LocationTracking.id of the ping just inserted")
 
 
@@ -137,7 +138,23 @@ class NationalTrailResponse(BaseModel):
               
 
 
-           
+"""Frontend sends JSON
+        ↓
+FastAPI receives request
+        ↓
+LocationPingRequest (validation + parsing)
+        ↓
+Your function runs (analysis happens here)
+        ↓
+Database is queried (past data fetched)
+        ↓
+Risk score calculated
+        ↓
+LocationPingResponse created
+        ↓
+FastAPI converts to JSON
+        
+Frontend receives result"""        
 
          
 
