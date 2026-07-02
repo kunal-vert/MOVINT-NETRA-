@@ -26,12 +26,6 @@ from utils.types import (
 
 
 
-
-
-
-
-
-
 #IMMIGRATION
 # POST /api/immigration/entry
 
@@ -95,18 +89,29 @@ class ImmigrationEntryResponse(BaseModel):
 # LOCATION PING
 # POST /api/location/ping
 class LocationPingRequest(BaseModel):
-           
-           # What Checkpost.jsx / Borderguard.jsx POSTs on operator submit.
+    # What Checkpost.jsx / Borderguard.jsx POSTs on operator submit.
     # lat/lng are resolved from NE_STATE_COORDS in React —
     # operator picks a state from dropdown, coordinates come automatically.
     
-           passport_id:   PassportId
-           operator_type: OperatorType
-           state:         Annotated[str, Field(max_length=60, description="NE state name from dropdown")]
-           lat:           Latitude
-           lng:           Longitude
-           delay_days:    DelayDays                 = Field(default=0)
-           notes:         Optional[list[str]]             = Field(default=None, description="Free text — no length limit (Text column)")
+      passport_id:   PassportId
+      operator_type: OperatorType
+      state:         Annotated[str, Field(max_length=60, description="NE state name from dropdown")]
+      lat:           Latitude
+      lng:           Longitude
+      delay_days:    DelayDays    = Field(default=0)
+      notes:         Optional[str] = Field(default=None, description="Free text — no length limit (Text column)")
    
 
 
+class LocationPingResponse(BaseModel):
+     success: bool
+     message: str
+     full_name: str
+     risk_level: RiskLevel
+     ping_id: int =  Field(ge=1, description="LocationTracking.id of the ping just inserted")
+
+           
+
+         
+
+ 
