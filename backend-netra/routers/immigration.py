@@ -1,6 +1,6 @@
 from __future__ import annotations
 from fastapi import APIRouter, Depends,HTTPException
-from sqlalchemy.orm import session
+from sqlalchemy.orm import Session
 from datetime import datetime, UTC
 
 
@@ -11,14 +11,14 @@ from utils.risk import compute_risk
 
 
 
-router = APIRouter(prefix="/api/immgration", tags=["immigration"])
+router = APIRouter(prefix="/api/immigration", tags=["immigration"])
 
 
 
 @router.post("/entry", response_model=ImmigrationEntryResponse)
 def register_entry(
     data: ImmigrationEntryRequest,
-    db: session = Depends(get_db)):
+    db: Session = Depends(get_db)):
 
 
     # we have to check whether threats already exists or not 
@@ -32,13 +32,13 @@ def register_entry(
 
     past_visits = []   
     is_returning = False
-    past_visits_count = 0
+    past_visit_count = 0
     
 
     if existing:
         past_visits = existing.visits
         is_returning = True
-        past_visits_count = len(past_visits)
+        past_visit_count = len(past_visits)
 
 
         existing.occupation       = data.occupation
@@ -47,7 +47,7 @@ def register_entry(
         existing.visa_permit_days = data.visa_permit_days
         existing.visa_expiry      = data.visa_expiry
         existing.criminal_record  = data.criminal_record
-        existing.prior_ne_visits  = past_visits_count
+        existing.prior_ne_visits  = past_visit_count
 
         national = existing
 
@@ -68,7 +68,7 @@ def register_entry(
 
 # step 2: Calc the risk lmfaooo .. just do it hahahahahah
 
-    risk = compute_risk(data.model_dump())  
+    risk = compute_risk(data.model_dump(), past_visits)  
 
     national.risk_score = risk["risk_score"]
     national.risk_level = risk["risk_level"]
@@ -78,7 +78,7 @@ def register_entry(
 
     visit = VisitHistory(
         foreign_national_id = national.id,
-        visit_number = past_visits_count +1,
+        visit_number = past_visit_count +1,
         entry_date   = datetime.now(UTC)
     )
 
@@ -112,7 +112,7 @@ def register_entry(
         risk_level       = national.risk_level,
         risk_reason      = national.risk_reason,
         is_returning     = is_returning,
-        past_visit_count = past_visits_count,
+        past_visit_count = past_visit_count,
         current_visit_id = visit.id,
         overstay_flag    = overstay_flag
     )
