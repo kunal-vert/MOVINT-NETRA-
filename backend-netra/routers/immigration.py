@@ -64,4 +64,13 @@ def register_entry(
 
         # keeping in mind we don't have to change the name, passport_id dob .  Though in future we have to work on alias profile through ML/ AI :)..
 
-       
+
+
+# step 2: Calc the risk lmfaooo .. just do it hahahahahah
+
+    risk = compute_risk(data.model_dump())  
+
+    national.risk_score = risk["risk_score"]
+    national.risk_level = risk["risk_level"]
+    national.risk_reason = risk["risk_reason"]
+
