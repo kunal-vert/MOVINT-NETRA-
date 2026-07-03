@@ -31,7 +31,7 @@ def register_entry(
 
 
     past_visits = []   
-    is_returning = False
+    is_returning = True
     past_visit_count = 0
     
 
