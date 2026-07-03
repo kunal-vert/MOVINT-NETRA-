@@ -56,8 +56,8 @@ def register_entry(
     else:
         #Fresh NATIONAL creation as we have already checked in database that he/she wasn't present  
 
-        Visitor = ForeignNational(**data.model_dump())
-        db.add(Visitor)
+        national = ForeignNational(**data.model_dump())
+        db.add(national)
         db.flush() # assigns national.id without full commit
 
         # here existing are information bout the subject/threat/visitors which would be database whereas the data are incoming info as fresh .Although info would be update if that person already been in NE 
@@ -73,4 +73,47 @@ def register_entry(
     national.risk_score = risk["risk_score"]
     national.risk_level = risk["risk_level"]
     national.risk_reason = risk["risk_reason"]
+
+    # Step 3: Open new VisitHistory for this trip as we need them while when subject be or travel to checkpost/tollpalaza/ hotel-checkout/Bordercheckpost.. this will link to this visit_id
+
+    visit = VisitHistory(
+        foreign_national_id = national.id,
+        visit_number = past_visits_count +1,
+        entry_date   = datetime.now(UTC)
+    )
+
+    db.add(visit)
+    db.commit()
+    db.refresh(visit)
+    db.refresh(national)
+
+
+    overstay_flag = any(v.overstayed 
+                        for v in past_visits)
+    
+
+    #Step 4 : Return the update version 
+
+    return ImmigrationEntryResponse(
+        passport_id      = national.passport_id,
+        full_name        = national.full_name,
+        nationality      = national.nationality,
+        gender           = national.gender,
+        dob              = national.dob,
+        country_code     = national.country_code,
+        occupation       = national.occupation,
+        criminal_record  = national.criminal_record,
+        visa_type        = national.visa_type,
+        visa_permit_days = national.visa_permit_days,
+        visa_expiry      = national.visa_expiry,
+        reason_to_visit  = national.reason_to_visit,
+        prior_ne_visits  = national.prior_ne_visits,
+        risk_score       = national.risk_score,
+        risk_level       = national.risk_level,
+        risk_reason      = national.risk_reason,
+        is_returning     = is_returning,
+        past_visit_count = past_visits_count,
+        current_visit_id = visit.id,
+        overstay_flag    = overstay_flag
+    )
 
