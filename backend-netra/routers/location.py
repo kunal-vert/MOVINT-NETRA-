@@ -104,4 +104,22 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
 
 
 @Tracker.get("/trail{passport_id}", response_model = NationalTrailResponse)
-    
+def get_trail(
+    passport_id: str,
+    db: Session = Depends(get_db)
+):
+    national = (
+        db.query(FN)
+        .filter_by(passport_id = passport_id)
+    )
+    if not national:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Passport {passport_id} not found."
+        )
+
+    if not national.visits:
+        raise HTTPException(
+            status_code=404,
+            detail="No active visit found for this national."
+        )
