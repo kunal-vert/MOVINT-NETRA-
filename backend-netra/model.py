@@ -2,7 +2,7 @@ from __future__ import annotations
 from datetime import datetime,date,UTC
 from sqlalchemy import(Boolean, Date, DateTime, ForeignKey, Integer,String, JSON,Text, Float)
 
-from sqlalchemy.orm import mapped_column, Mapped, relationship
+from sqlalchemy.orm import mapped_column, Mapped, relationship   
 from database import Base
 
 
@@ -30,7 +30,7 @@ class ForeignNational(Base):
 
     gender:            Mapped[str]        = mapped_column(String(10),  nullable=False, default="Unknown")
 
-    dob:     Mapped[date]        = mapped_column(Date, nullable=False)
+    dob:               Mapped[date]       = mapped_column(Date, nullable=False)
 
 
     occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)

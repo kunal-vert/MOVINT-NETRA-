@@ -20,7 +20,7 @@ app = FastAPI(
 
 
 @app.get("/", include_in_schema=False, name="home")
-def home():
+def home():  #It will be called by FastAPI whenever it receives a request to the URL "/" using a GET operation
     return{
         "message":"MOVINT NETRA API running"
     }
