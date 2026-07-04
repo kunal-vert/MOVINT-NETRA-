@@ -24,3 +24,12 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
     national = db.query(FN).filter_by(
         passport_id = data.passport_id
     ).first()
+     
+
+      
+    if not national:
+        raise HTTPException(
+            status_code=404,
+            detail=f"Passport {data.passport_id} not found .f"National must clear Airport Immigration first"
+        )
+    
