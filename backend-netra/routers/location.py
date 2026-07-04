@@ -4,7 +4,7 @@ from sqlalchemy.orm import Session
 from datetime import datetime ,UTC
 
 
-
+from utils.risk import compute_risk
 from database import get_db
 from model import ForeignNational as FN, LocationTracking as LT
 from schemas import (
@@ -16,7 +16,7 @@ from schemas import (
 
 
 
-Tracker = APIRoute()
+Tracker = APIRoute(prefix="/api/location", tags=["Location"])
 
 @Tracker.post("/ping", response_model = LocationPingResponse)
 def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
@@ -71,6 +71,23 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
     if data.delay_days > 0:
         current_visit.overstayed =True
 
+    if data.notes or data.delay_days > 0:
+        updated_risk = compute_risk(
+            {
+                "criminal_record": national.criminal_record,
+                "occupation":      national.occupation,
+                "nationality":     national.nationality,
+                "prior_ne_visits": national.prior_ne_visits,
+                "visa_type":       national.visa_type,
+                "reason_to_visit": national.reason_to_visit,
+            },
+            national.visits
+        )
+        national.risk_score  = updated_risk["risk_score"]
+        national.risk_level  = updated_risk["risk_level"]
+        national.risk_reason = updated_risk["risk_reason"]
+
+
     if data.notes:
         now      = datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
         existing = current_visit.issues_during_visit or ""
@@ -90,6 +107,7 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
 
     db.commit()
     db.refresh(ping)
+    db.refresh(national)
 
     return LocationPingResponse(
         success    = True,
@@ -103,7 +121,7 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
 
 
 
-@Tracker.get("/trail{passport_id}", response_model = NationalTrailResponse)
+@Tracker.get("/trail/{passport_id}", response_model = NationalTrailResponse)
 def get_trail(
     passport_id: str,
     db: Session = Depends(get_db)
@@ -111,6 +129,7 @@ def get_trail(
     national = (
         db.query(FN)
         .filter_by(passport_id = passport_id)
+        .first()
     )
     if not national:
         raise HTTPException(

@@ -2,7 +2,7 @@
 
 # Calling upon the Immigration Router only 
 
-HIGH_RISK_OCCUPATIONS = {"journalist", "researcher", "activist", "ngo worker", "photographer", "missionary", " War-Veterans","filmmaker"}
+HIGH_RISK_OCCUPATIONS = {"journalist", "researcher", "activist", "ngo worker", "photographer", "missionary", " war-Veterans","filmmaker"}
 
 HIGH_RISK_NATIONALITIES = {"china", "pakistan", "myanmar", "bangladesh","afghanistan"}
 
@@ -21,7 +21,7 @@ def compute_risk (data: dict, past_visits: list) -> dict:
         reasons.append("Criminal record on file")
 
     # 2. Occupation
-    occ = str(data("occupation", "")).lower().strip()
+    occ = str(data("occupation" or "")).lower().strip()
     if occ in HIGH_RISK_OCCUPATIONS:
         score +=20
         reasons.append(f"Sensitive occupation: {occ}")  
@@ -68,7 +68,7 @@ def compute_risk (data: dict, past_visits: list) -> dict:
         level = "LOW"
 
     return {
-        "risk_score":  score,
+        "risk_score":  min(score, 200),
         "risk_level":  level,
         "risk_reason": " | ".join(reasons) if reasons else "No risk detected"
     }        

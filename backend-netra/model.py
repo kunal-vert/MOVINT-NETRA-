@@ -33,7 +33,7 @@ class ForeignNational(Base):
     dob:               Mapped[date]       = mapped_column(Date, nullable=False)
 
 
-    occupation:        Mapped[str | None] = mapped_column(String(100), nullable=True)
+    occupation:        Mapped[str] = mapped_column(String(200), nullable=False)
 
    
     country_code:      Mapped[str]        = mapped_column(String (4),  nullable=False   )
