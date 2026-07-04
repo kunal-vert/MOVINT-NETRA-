@@ -30,6 +30,34 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
     if not national:
         raise HTTPException(
             status_code=404,
-            detail=f"Passport {data.passport_id} not found .f"National must clear Airport Immigration first"
+            detail=f"Passport {data.passport_id} not found." f"National must clear Airport Immigration first"
+        ) 
+    
+
+    if not national.visits:
+        raise HTTPException(
+            status_code=404,
+            detail="No active visit found"
         )
     
+
+    # Latest visit row = current active trip
+
+    current_visit = national.visits[-1]
+    
+    # Insert Location Ping
+
+    location_label = f"{data.operator_type} | {data.state}"
+
+
+    ping = LT(
+        visit_id      = current_visit.id,
+        operator_type = data.operator_type,
+        location      = location_label,
+        lat           = data.lat,
+        lng           = data.lng,
+        delay_days    = data.delay_days,
+        notes         = data.notes
+    )
+
+    db.add(ping)
