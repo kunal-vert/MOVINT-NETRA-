@@ -135,4 +135,23 @@ def get_trail(
         .all()
     )
 
-    
+    return NationalTrailResponse(
+        passport_id = national.passport_id,
+        full_name   = national.full_name,
+        risk_level       = national.risk_level,
+        risk_score       = national.risk_score,
+        current_visit_id = current_visit.id,
+       trail = [
+            TrailPoint(
+                id            = p.id,
+                operator_type = p.operator_type,
+                location      = p.location,
+                lat           = p.lat,
+                lng           = p.lng,
+                delay_days    = p.delay_days,
+                timestamp     = p.timestamp,
+                notes         = p.notes
+            )
+            for p in pings
+        ]
+    )
