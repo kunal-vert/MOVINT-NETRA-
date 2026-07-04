@@ -123,3 +123,16 @@ def get_trail(
             status_code=404,
             detail="No active visit found for this national."
         )
+    
+    current_visit = national.visits[-1]
+    # Oldest → newest — Leaflet connects in this order
+    # trail=[] valid — national registered but hasn't moved yet
+
+    pings = (
+        db.query(LT)
+        .filter(LT.visit_id == current_visit.id)
+        .order_by(LT.timestamp)
+        .all()
+    )
+
+    
