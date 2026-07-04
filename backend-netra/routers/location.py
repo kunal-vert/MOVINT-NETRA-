@@ -78,3 +78,30 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
             existing +
             f"\n[{data.operator_type} | {data.state} | {now}]: {data.notes}"
         ).strip()
+
+
+    #Update states_visited on this visit
+    # Here JSON list will grow as national move through the NE states
+
+    states = list (current_visit.states_visited or [])
+    if data.state not in states:
+        states.append(data.state)
+        current_visit.states_visited = states
+
+    db.commit()
+    db.refresh(ping)
+
+    return LocationPingResponse(
+        success    = True,
+        message    = f"{data.operator_type} ping logged for "
+                     f"{national.full_name} in {data.state}",
+        full_name  = national.full_name,
+        risk_level = national.risk_level,
+        risk_score = national.risk_score,
+        ping_id    = ping.id
+    )       
+
+
+
+@Tracker.get("/trail{passport_id}", response_model = NationalTrailResponse)
+    
