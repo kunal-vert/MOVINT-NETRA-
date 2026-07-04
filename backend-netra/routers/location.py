@@ -1,6 +1,7 @@
 from __future__ import annotations
 from fastapi import APIRoute,Depends, HTTPException
 from sqlalchemy.orm import Session
+from datetime import datetime ,UTC
 
 
 
@@ -61,3 +62,19 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
     )
 
     db.add(ping)
+
+
+    if data.notes:
+        current_visit.flagged = True
+
+
+    if data.delay_days > 0:
+        current_visit.overstayed =True
+
+    if data.notes:
+        now      = datetime.now(UTC).strftime("%Y-%m-%d %H:%M UTC")
+        existing = current_visit.issues_during_visit or ""
+        current_visit.issues_during_visit = (
+            existing +
+            f"\n[{data.operator_type} | {data.state} | {now}]: {data.notes}"
+        ).strip()
