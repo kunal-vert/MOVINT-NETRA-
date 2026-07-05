@@ -21,14 +21,14 @@ def compute_risk (data: dict, past_visits: list) -> dict:
         reasons.append("Criminal record on file")
 
     # 2. Occupation
-    occ = str(data("occupation" or "")).lower().strip()
+    occ = (data.get("occupation" or "")).lower().strip()
     if occ in HIGH_RISK_OCCUPATIONS:
         score +=20
         reasons.append(f"Sensitive occupation: {occ}")  
 
 
     # 3. Nationality
-    nat = str(data.get("nationality", "")).lower().strip()
+    nat = (data.get("nationality" or "")).lower().strip()
     if nat in HIGH_RISK_NATIONALITIES:
         score += 15
         reasons.append(f"High-risk nationality: {nat}")

@@ -1,5 +1,5 @@
 from __future__ import annotations
-from fastapi import APIRoute,Depends, HTTPException
+from fastapi import APIRouter,Depends, HTTPException
 from sqlalchemy.orm import Session
 from datetime import datetime ,UTC
 
@@ -16,9 +16,9 @@ from schemas import (
 
 
 
-Tracker = APIRoute(prefix="/api/location", tags=["Location"])
+router = APIRouter(prefix="/api/location", tags=["Location"])
 
-@Tracker.post("/ping", response_model = LocationPingResponse)
+@router.post("/ping", response_model = LocationPingResponse)
 def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
     # first we need to check whether one being register in Immigration at first place .. 
 
@@ -121,7 +121,7 @@ def location_ping(data: LocationPingRequest, db: Session = Depends(get_db)):
 
 
 
-@Tracker.get("/trail/{passport_id}", response_model = NationalTrailResponse)
+@router.get("/trail/{passport_id}", response_model = NationalTrailResponse)
 def get_trail(
     passport_id: str,
     db: Session = Depends(get_db)

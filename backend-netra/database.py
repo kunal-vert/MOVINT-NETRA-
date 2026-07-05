@@ -3,7 +3,7 @@ from sqlalchemy.orm import DeclarativeBase, sessionmaker
 
 # This wil be for  PostgreSQL — PostGIS ready (for future spatial queries)..... already we have written im postGIS for leaflet js
 
-SQLALCHEMY_DATABASE_URL = ""
+SQLALCHEMY_DATABASE_URL = "postgresql://postgres:12345@localhost:5432/NE_MOVINT"
 
 engine = create_engine(SQLALCHEMY_DATABASE_URL, pool_pre_ping=True, echo=True)
 
