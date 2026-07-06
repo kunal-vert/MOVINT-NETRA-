@@ -68,6 +68,16 @@ const Borderguard = () => {
                 className="w-full px-3 py-2 border border-gray-700 rounded-md bg-[#3a2f2f] text-white text-lg outline-none focus:border-purple-500"
               />
             </div>
+            <div className="flex flex-col gap-2">
+              <label className="text-gray-400 text-lg font-semibold">
+               Issues
+              </label>
+              <input
+                type="number"
+                placeholder="Delay days"
+                className="w-full px-3 py-2 border border-gray-700 rounded-md bg-[#3a2f2f] text-white text-lg outline-none focus:border-purple-500"
+              />
+            </div>
 
             <button
               type="submit"
