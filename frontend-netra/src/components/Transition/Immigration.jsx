@@ -74,12 +74,12 @@ const Immigration = () => {
   }}
 ></div> */}
 
-                <div className='flex gap-2 items-center bg-violet-400 rounded-full border-b-2 border-black mx-auto w-fit px-4 py-2 my-1.5'>
-                    <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2'>
+              
+                    <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2 '>
                         Visitor Details
                     </div>
-                    <img src={Bagpack} className='w-10 h-10 invert-25' alt="Backpack" />
-                </div>
+                    
+                
 
                 <div className='px-3 pb-6'>
                     {Error && (
@@ -217,7 +217,8 @@ const Immigration = () => {
                         <div className="flex items-center justify-between w-full p-4 bg-sky-900 rounded-xl mt-4">
 
                             <h1 className="text-white text-base font-semibold tracking-wide">
-                                Deploy as: DGCA Officer ({Details.length})
+                                Deploy as: DGCA Officer 
+                                {/* ({Details.length}) */}
                             </h1>
 
                             <button type="button" onClick={SubmitDeploy} className="p-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-sky-700 hover:scale-110 active:scale-95">
