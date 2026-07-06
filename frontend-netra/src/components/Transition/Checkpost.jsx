@@ -50,6 +50,14 @@ const Checkpost = () => {
               className="px-3 py-2 rounded-md bg-white/10 text-white outline-none border border-gray-700 focus:border-purple-500"
             />
           </div>
+          <div className="flex flex-col">
+            <label className="text-white mb-1">Issues</label>
+            <input
+              type="text"
+              placeholder="Issues...."
+              className="px-3 py-2 rounded-md bg-white/10 text-white outline-none border border-gray-700 focus:border-purple-500"
+            />
+          </div>
 
 
           <button
