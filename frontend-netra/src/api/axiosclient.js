@@ -11,3 +11,8 @@ const api = axios.create({
 })
 
 export default api
+
+// Every component imports this instead of using axios directly.
+// Change the baseURL here once and every file picks it up.
+
+// here we can Multiple instances for different services

@@ -8,9 +8,6 @@ const cityData = [
 { id: 1, name:"Nikita", city: "New Delhi 🏛️", coords: [28.6139, 77.2090] },
 { id: 2, name:"Niku", city: "Mumbai 🌊", coords: [19.0760, 72.8777] },
 { id: 3, name:"gaach", city: "Bangalore 💻", coords: [12.9716, 77.5946] },
-{ id: 3, name:"gaach", city: "Bangalore 💻", coords: [10.9716, 7.5946] },
-{ id: 3, name:"gaach", city: "Bangalore 💻", coords: [25.9716, 90.5946] },
-{ id: 3, name:"gaach", city: "Bangalore 💻", coords: [11.9716, 77.5946] },
 ];
 
 // const rocketIcon = new Icon({
@@ -46,6 +43,7 @@ const TrackMap = () => {
             <div>Me {c.name}</div>
           <h1 className='text-cyan-600' >yeh 
           {c.city} hai!.</h1>
+          
          </div>
         </Popup>
       </Marker>
