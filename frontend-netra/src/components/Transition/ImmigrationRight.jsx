@@ -2,31 +2,30 @@ import React from 'react'
 
 const riskColors = {
     HIGH: {
-         bg: 'bg-red-800 border-red-950', text: 'text-orange-500' 
-        },
-    MEDIUM: { 
+        bg: 'bg-red-800 border-red-950', text: 'text-orange-500'
+    },
+    MEDIUM: {
         bg: 'bg-yellow-800 border-yellow-950', text: 'text-yellow-400'
-     },
-    LOW: { 
-        bg: 'bg-green-900 border-green-950', text: 'text-green-400' 
+    },
+    LOW: {
+        bg: 'bg-green-900 border-green-950', text: 'text-green-400'
     },
 }
 
 const ImmigrationRight = ({ data }) => {
 
-    const getRiskLevel = data.riskscore || 0
-    
-    if (score > 90) {
-        return "HIGH"
-    }
-    if (score > 60 ) {
-        return "MEDIUM"
-    } 
-    return "LOW"
+    const score = data.riskScore || 0
 
-    const risklevel = getRiskLevel(score)
-    const risk = riskColors[risklevel]
-     
+    const getRiskLevel = (score) => {
+        if (score > 90) return "HIGH";
+        if (score > 60) return "MEDIUM";
+        return "LOW";
+    };
+
+
+    const ThreatLevel = getRiskLevel(score)
+    const risk = riskColors[ThreatLevel]
+
 
 
     return (
@@ -47,7 +46,7 @@ const ImmigrationRight = ({ data }) => {
                 <div className="flex items-center gap-4 text-gray-500 text-2xl font-[font2]">
                     <span>{data.passportNumber}</span>
                     <span>{data.nationality}</span>
-    ';'            </div>
+                           </div>
             </div>
 
             {/* Risk Box */}
@@ -58,11 +57,11 @@ const ImmigrationRight = ({ data }) => {
 
                 <div className='flex items-center gap-x-2.5'>
                     <span className={`text-5xl font-bold ${risk.text}`}>
-                        {data.riskScore}
+                        {score}
                     </span>
 
                     <span className={`mx-2 text-3xl font-bold ${risk.text}`}>
-                        {riskLevel}
+                        {data.riskLevel}
                     </span>
                 </div>
 
