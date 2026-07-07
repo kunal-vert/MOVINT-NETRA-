@@ -28,6 +28,7 @@ const Immigration = () => {
     const [Form, setForm] = useState(EmptyForm)
     const [Details, setDetails] = useState([])
     const [Error, setError] = useState('')
+    const [Loading, setLoading] = useState(false)
 
 
 
