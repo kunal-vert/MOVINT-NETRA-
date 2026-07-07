@@ -37,7 +37,7 @@ const Immigration = () => {
     const ChangeHandler = (e) => {
         const { name, value } = e.target
         setForm({ ...Form, [name]: value })
-        
+
         setError('')
     }
 
@@ -58,8 +58,8 @@ const Immigration = () => {
             return
         }
         try {
-            const response = await api.post('/api/immigration/entry',{
-                 passport_id: Form.passportNumber,
+            const response = await api.post('/api/immigration/entry', {
+                passport_id: Form.passportNumber,
                 full_name: Form.fullName,
                 nationality: Form.nationality,
                 gender: Form.gender,
@@ -74,17 +74,17 @@ const Immigration = () => {
                 reason_to_visit: Form.reasonToVisit
             })
             const info = response.data
-            setDetails([...Details, {...info, id:data.current_visit_id}])
+            setDetails([...Details, { ...info, id: data.current_visit_id }])
             setForm(EmptyForm)
         } catch (error) {
             if (error.response) {
                 setError()
             }
         }
-        finally{
+        finally {
             setLoading(false)
         }
-       
+
     }
 
 
@@ -102,12 +102,12 @@ const Immigration = () => {
   }}
 ></div> */}
 
-              
-                    <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2 '>
-                        Visitor Details
-                    </div>
-                    
-                
+
+                <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2 '>
+                    Visitor Details
+                </div>
+
+
 
                 <div className='px-3 pb-6'>
                     {Error && (
@@ -245,7 +245,7 @@ const Immigration = () => {
                         <div className="flex items-center justify-between w-full p-4 bg-sky-900 rounded-xl mt-4">
 
                             <h1 className="text-white text-base font-semibold tracking-wide">
-                                Deploy as: DGCA Officer 
+                                Deploy as: DGCA Officer
                                 {/* ({Details.length}) */}
                             </h1>
 
