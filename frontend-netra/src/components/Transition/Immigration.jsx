@@ -20,7 +20,8 @@ const EmptyForm = {
     passportExpiry: '',
     gender: '',
     dob: '',
-    visaType: ''
+    visaType: '',
+    criminal_record:''
 }
 const Immigration = () => {
 
@@ -52,7 +53,8 @@ const Immigration = () => {
             Form.passportExpiry === '' ||
             Form.gender === '' ||
             Form.dob === '' ||
-            Form.visaType === ''
+            Form.visaType === '' ||
+            Form.criminal_record === ''
         ) {
             setError('All fields are required before deploying!')
             return
@@ -209,10 +211,21 @@ const Immigration = () => {
                             <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
                                 value={Form.gender}
                                 onChange={ChangeHandler}>
-                                <option value=''>Select gender</option>
+                             
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
+                            </select>
+                        </div>
+                        <div className='my-3'>
+                            <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>criminal_record</h3>
+                            <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
+                                value={Form.gender}
+                                onChange={ChangeHandler}>
+                                
+                                <option value="Male">True</option>
+                                <option value="Female">False</option>
+                               
                             </select>
                         </div>
 
