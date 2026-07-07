@@ -14,7 +14,7 @@ const riskColors = {
 
 const ImmigrationRight = ({ data }) => {
 
-    const score = data.riskscore || 0
+    const getRiskLevel = data.riskscore || 0
     
     if (score > 90) {
         return "HIGH"
@@ -23,6 +23,9 @@ const ImmigrationRight = ({ data }) => {
         return "MEDIUM"
     } 
     return "LOW"
+
+    const risklevel = getRiskLevel(score)
+    const risk = riskColors[risklevel]
      
 
 
