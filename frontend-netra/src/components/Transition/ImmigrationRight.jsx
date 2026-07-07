@@ -17,23 +17,14 @@ const ImmigrationRight = ({ data }) => {
     const score = data.riskscore || 0
     
     if (score > 90) {
-        return HIGH
+        return "HIGH"
     }
     if (score > 60 ) {
-        return MEDIUM
-    } else {
-        return LOW
-    }
+        return "MEDIUM"
+    } 
+    return "LOW"
+     
 
-
-
-
-    const riskLevel = data.riskLevel || "LOW"
-
-    const risk = riskColors[riskLevel] || {
-        bg: 'bg-gray-800 border-gray-700',
-        text: 'text-gray-400'
-    }
 
     return (
         <div className='bg-gray-900 rounded-xl p-6 flex flex-col gap-8'>
@@ -53,7 +44,7 @@ const ImmigrationRight = ({ data }) => {
                 <div className="flex items-center gap-4 text-gray-500 text-2xl font-[font2]">
                     <span>{data.passportNumber}</span>
                     <span>{data.nationality}</span>
-                </div>
+    ';'            </div>
             </div>
 
             {/* Risk Box */}
