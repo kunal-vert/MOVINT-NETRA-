@@ -54,17 +54,37 @@ const Immigration = () => {
             Form.dob === '' ||
             Form.visaType === ''
         ) {
-            setError('⚠️ All fields are required before deploying!')
+            setError('All fields are required before deploying!')
             return
         }
         try {
-            
+            const response = await api.post('/api/immigration/entry',{
+                 passport_id: Form.passportNumber,
+                full_name: Form.fullName,
+                nationality: Form.nationality,
+                gender: Form.gender,
+                dob: Form.dob,
+                country_code: 'N/A',
+                occupation: Form.occupation,
+                criminal_record: false,
+                prior_ne_visits: parseInt(Form.priorVisits) || 0,
+                visa_type: Form.visaType,
+                visa_permit_days: 30,
+                visa_expiry: Form.passportExpiry,
+                reason_to_visit: Form.reasonToVisit
+            })
+            const info = response.data
+            setDetails([...Details, {...info, id:data.current_visit_id}])
+            setForm(EmptyForm)
         } catch (error) {
-            
+            if (error.response) {
+                setError()
+            }
         }
-        setDetails([...Details, { ...Form, id: Date.now() }])
-        setForm(EmptyForm)
-        setError('')
+        finally{
+            setLoading(false)
+        }
+       
     }
 
 
