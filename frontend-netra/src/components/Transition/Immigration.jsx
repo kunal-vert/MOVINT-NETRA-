@@ -37,10 +37,11 @@ const Immigration = () => {
     const ChangeHandler = (e) => {
         const { name, value } = e.target
         setForm({ ...Form, [name]: value })
+        
         setError('')
     }
 
-    const SubmitDeploy = () => {
+    const SubmitDeploy = async () => {
         if (
             Form.passportNumber.trim() === '' ||
             Form.fullName.trim() === '' ||
@@ -55,6 +56,11 @@ const Immigration = () => {
         ) {
             setError('⚠️ All fields are required before deploying!')
             return
+        }
+        try {
+            
+        } catch (error) {
+            
         }
         setDetails([...Details, { ...Form, id: Date.now() }])
         setForm(EmptyForm)
