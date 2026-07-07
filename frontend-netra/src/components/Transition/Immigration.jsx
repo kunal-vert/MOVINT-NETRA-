@@ -103,7 +103,7 @@ const Immigration = () => {
 ></div> */}
 
 
-                <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-2 '>
+                <div className='text-center text-xl font-[font1] my-2.5 border-violet-950 rounded-2xl py-1 border-b-4 '>
                     Visitor Details
                 </div>
 
