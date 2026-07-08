@@ -29,7 +29,7 @@ const EmptyForm = {
     gender: '',
     dob: '',
     visaType: '',
-    criminalRecord:''
+    criminalRecord: ''
 }
 const Immigration = () => {
 
@@ -62,7 +62,7 @@ const Immigration = () => {
             Form.gender === '' ||
             Form.dob === '' ||
             Form.visaType === '' ||
-            Form.criminal_record === ''
+            Form.criminalRecord === ''
         ) {
             setError('All fields are required before deploying!')
             return
@@ -71,6 +71,8 @@ const Immigration = () => {
 
         const code = countries.getAlpha2Code(Form.nationality, 'en') || 'N/A'
 
+        setLoading(true)
+        setError('')
 
         try {
             const response = await api.post('/api/immigration/entry', {
@@ -81,7 +83,7 @@ const Immigration = () => {
                 dob: Form.dob,
                 country_code: code,
                 occupation: Form.occupation,
-                criminal_record: Form.criminalRecord,
+                criminal_record: Form.criminalRecord === true,
                 prior_ne_visits: parseInt(Form.priorVisits) || 0,
                 visa_type: Form.visaType,
                 visa_permit_days: 30,
@@ -89,14 +91,19 @@ const Immigration = () => {
                 reason_to_visit: Form.reasonToVisit
             })
             const info = response.data
-            setDetails([...Details, { ...info, id: data.current_visit_id }])
+            setDetails([...Details, { ...info, id: info.current_visit_id }])
             setForm(EmptyForm)
-        } catch (error) {
-            if (error.response) {
-                setError()
+
+
+        } catch (err) {
+            if (err.response) {
+                setError(err.response.data?.detail || 'Deployment failed')
+            } else if (err.request) {
+                setError('Could not reach MOVINT backend — is the server running?')
+            } else {
+                setError('Unexpected error occurred')
             }
-        }
-        finally {
+        } finally {
             setLoading(false)
         }
 
@@ -224,7 +231,7 @@ const Immigration = () => {
                             <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
                                 value={Form.gender}
                                 onChange={ChangeHandler}>
-                             
+                                 <option value=''>Select gender</option> 
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
@@ -232,13 +239,13 @@ const Immigration = () => {
                         </div>
                         <div className='my-3'>
                             <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>criminal_record</h3>
-                            <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
-                                value={Form. criminal_record}
+                            <select name="" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
+                                value={Form.criminal_record}
                                 onChange={ChangeHandler}>
-                                
+
                                 <option value="Male">True</option>
                                 <option value="Female">False</option>
-                               
+
                             </select>
                         </div>
 
@@ -258,7 +265,7 @@ const Immigration = () => {
                             <select name="visaType" className={`${selectClass} ${Error && !Form.visaType ? ErrorInputClass : normalInputClass}`}
                                 value={Form.visaType}
                                 onChange={ChangeHandler}>
-                                
+
                                 <option value="Tourist">Tourist</option>
                                 <option value="Business">Business</option>
                                 <option value="Student">Student</option>
