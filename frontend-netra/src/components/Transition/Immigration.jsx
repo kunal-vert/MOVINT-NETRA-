@@ -6,6 +6,10 @@ import countries from 'i18n-iso-countries'
 import enLocale from 'i18n-iso-countries/langs/en.json'
 // import visitors from '../Data/visitors'
 
+
+
+
+countries.registerLocale(enLocale) // This is avaiable in different lang so we have to edit what exactly we want lmfaooo:)
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 
