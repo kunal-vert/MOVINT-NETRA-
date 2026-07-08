@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
-import ImmigrationRight from './ImmigrationRight'
+import ImmigrationRight from './NationalRiskCard'
 import api from '../../api/axiosClient'
 import countries from 'i18n-iso-countries'
 import enLocale from 'i18n-iso-countries/langs/en.json'

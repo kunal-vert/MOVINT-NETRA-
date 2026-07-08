@@ -17,7 +17,7 @@ const riskColors = {
 
 
 
-const ImmigrationRight = ({ data }) => {
+const NationalRiskCard = ({ data }) => {
 
     const score = data.riskScore || 0
 

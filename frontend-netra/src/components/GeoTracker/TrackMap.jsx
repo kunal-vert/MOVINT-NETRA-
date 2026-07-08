@@ -1,55 +1,62 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // CSS import karna mat bhoolna!
-import  './Leaflet.theme.css'
+import './Leaflet.theme.css'
 // import { Icon } from 'leaflet';
 // import { BlendIcon, RocketIcon } from 'lucide-react';
 
 
- const API_BASE = ''
- const KOLKATA_ENTRY = [22.654, 88.446]
+const API_BASE = ''
+const KOLKATA_ENTRY = [22.654, 88.446]
 
- const RISK_COLOR = {
-    LOW: '#22c55e',
-    MEDIUM: '#eab308',
-    HIGH: '#ef4444',
- }
+const getRiskColor = () => RISK_COLOR[level] || '#6b7280'
 
 
 
- 
+
+
+
+const RISK_COLOR = {
+  LOW: '#22c55e',
+  MEDIUM: '#eab308',
+  HIGH: '#ef4444',
+}
+
+
+
+
 const TrackMap = () => {
 
-  
+
 
 
   // As default aaha hum Netaji Subhas chandra Airport International Airport ke coordinates (Latitude, Longitude)
- 
+
 
   return (
     // 1. MapContainer: Yeh hamara Pizza Base (khali canvas) hai. 
     // Isme height dena bohot zaroori hai, warna map dikhega hi nahi!
-    <MapContainer  center={centreposition} zoom={14} style={{ height: "500px", width: "100%" }}>
-      
+    <MapContainer center={centreposition} zoom={14} style={{ height: "500px", width: "100%" }}>
+
       {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
       // Yeh URL internet se chote-chote map ke square images fetch karta hai. */}
       <TileLayer
         url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
         attribution='&copy; <a href="https://www.openstreetmap.org/copyright"></a> '
       />
-      
+
       {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
-      {cityData.map((c)=>(
-      <Marker key={c.id} position={c.coords}  >
-        <Popup className='text-2xl'>
-         <div>
-            <div>Me {c.name}</div>
-          <h1 className='text-cyan-600' >yeh 
-          {c.city} hai!.</h1>
-          
-         </div>
-        </Popup>
-      </Marker>
+      {cityData.map((c) => (
+        <Marker key={c.id} position={c.coords}  >
+          <Popup className='text-2xl'>
+            <div>
+              <div>Me {c.name}</div>
+              <h1 className='text-cyan-600' >yeh
+                {c.city} hai!.</h1>
+
+            </div>
+          </Popup>
+        </Marker>
       ))}
 
     </MapContainer>
@@ -57,3 +64,4 @@ const TrackMap = () => {
 };
 
 export default TrackMap;
+
