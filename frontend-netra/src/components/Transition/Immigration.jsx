@@ -220,7 +220,7 @@ const Immigration = () => {
                         <div className='my-3'>
                             <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>criminal_record</h3>
                             <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
-                                value={Form.gender}
+                                value={Form. criminal_record}
                                 onChange={ChangeHandler}>
                                 
                                 <option value="Male">True</option>
@@ -233,7 +233,7 @@ const Immigration = () => {
                             <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>DOB</h3>
                             <input
                                 type="date"
-                                name="dob"
+                                name="DOB"
                                 className={`${inputClass} ${Error && !Form.dob ? ErrorInputClass : normalInputClass}`}
                                 value={Form.dob}
                                 onChange={ChangeHandler}
@@ -245,7 +245,7 @@ const Immigration = () => {
                             <select name="visaType" className={`${selectClass} ${Error && !Form.visaType ? ErrorInputClass : normalInputClass}`}
                                 value={Form.visaType}
                                 onChange={ChangeHandler}>
-                                <option value=''>Select visa type</option>
+                                
                                 <option value="Tourist">Tourist</option>
                                 <option value="Business">Business</option>
                                 <option value="Student">Student</option>
