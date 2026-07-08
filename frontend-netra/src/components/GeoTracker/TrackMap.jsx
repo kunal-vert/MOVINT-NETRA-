@@ -1,27 +1,30 @@
 import React, { useState } from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // CSS import karna mat bhoolna!
+import  './Leaflet.theme.css'
 // import { Icon } from 'leaflet';
 // import { BlendIcon, RocketIcon } from 'lucide-react';
 
-const cityData = [
-{ id: 1, name:"Nikita", city: "New Delhi 🏛️", coords: [28.6139, 77.2090] },
-{ id: 2, name:"Niku", city: "Mumbai 🌊", coords: [19.0760, 72.8777] },
-{ id: 3, name:"gaach", city: "Bangalore 💻", coords: [12.9716, 77.5946] },
-];
 
-// const rocketIcon = new Icon({
-//   iconUrl: 'https://cdn-icons-png.flaticon.com/512/3141/3141158.png', // Rocket image ka URL
-//   iconSize: [40, 40], // Icon ki width aur height pixels mein
-// });
+ const API_BASE = ''
+ const KOLKATA_ENTRY = [22.654, 88.446]
 
+ const RISK_COLOR = {
+    LOW: '#22c55e',
+    MEDIUM: '#eab308',
+    HIGH: '#ef4444',
+ }
+
+
+
+ 
 const TrackMap = () => {
 
-  // const [first, setfirst] = useState(second)
+  
 
 
   // As default aaha hum Netaji Subhas chandra Airport International Airport ke coordinates (Latitude, Longitude)
-  const centreposition = [22.654, 88.446]
+ 
 
   return (
     // 1. MapContainer: Yeh hamara Pizza Base (khali canvas) hai. 

@@ -1,5 +1,7 @@
 import React from 'react'
 
+
+
 const riskColors = {
     HIGH: {
         bg: 'bg-red-800 border-red-950', text: 'text-orange-500'
@@ -11,6 +13,9 @@ const riskColors = {
         bg: 'bg-green-900 border-green-950', text: 'text-green-400'
     },
 }
+
+
+
 
 const ImmigrationRight = ({ data }) => {
 
@@ -95,12 +100,12 @@ const ImmigrationRight = ({ data }) => {
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Permit Days</h2>
-                    <p className="font-semibold text-lg">{data.permitDays} days</p>
+                    <p className="font-semibold text-lg">{data.visa_permit_days} days</p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Reason to Visit</h2>
-                    <p className="font-semibold text-lg">{data.reasonToVisit}</p>
+                    <p className="font-semibold text-lg">{data.reason_to_visit || "N/A"}</p>
                 </div>
 
                 <div>
