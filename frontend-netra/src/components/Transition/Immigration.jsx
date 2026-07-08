@@ -2,6 +2,8 @@ import React, { useState } from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
 import ImmigrationRight from './ImmigrationRight'
 import api from '../../api/axiosClient'
+import countries from 'i18n-iso-countries'
+import enLocale from 'i18n-iso-countries/langs/en.json'
 // import visitors from '../Data/visitors'
 
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
