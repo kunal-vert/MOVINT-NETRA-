@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
 import ImmigrationRight from './ImmigrationRight'
-import api from '../../api/axiosclient'
+import api from '../../api/axiosClient'
 // import visitors from '../Data/visitors'
 
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
@@ -21,7 +21,7 @@ const EmptyForm = {
     gender: '',
     dob: '',
     visaType: '',
-    criminal_record:''
+    criminalRecord:''
 }
 const Immigration = () => {
 
@@ -59,6 +59,7 @@ const Immigration = () => {
             setError('All fields are required before deploying!')
             return
         }
+        let code = Form.nationality
         try {
             const response = await api.post('/api/immigration/entry', {
                 passport_id: Form.passportNumber,
@@ -68,7 +69,7 @@ const Immigration = () => {
                 dob: Form.dob,
                 country_code: 'N/A',
                 occupation: Form.occupation,
-                criminal_record: false,
+                criminal_record: Form.criminalRecord,
                 prior_ne_visits: parseInt(Form.priorVisits) || 0,
                 visa_type: Form.visaType,
                 visa_permit_days: 30,
