@@ -10,6 +10,8 @@ import enLocale from 'i18n-iso-countries/langs/en.json'
 
 
 countries.registerLocale(enLocale) // This is avaiable in different lang so we have to edit what exactly we want lmfaooo:)
+
+
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 
@@ -65,7 +67,11 @@ const Immigration = () => {
             setError('All fields are required before deploying!')
             return
         }
-        let code = Form.nationality
+
+
+        const code = countries.getAlpha2Code(Form.nationality, 'en') || 'N/A'
+
+
         try {
             const response = await api.post('/api/immigration/entry', {
                 passport_id: Form.passportNumber,
@@ -73,7 +79,7 @@ const Immigration = () => {
                 nationality: Form.nationality,
                 gender: Form.gender,
                 dob: Form.dob,
-                country_code: 'N/A',
+                country_code: code,
                 occupation: Form.occupation,
                 criminal_record: Form.criminalRecord,
                 prior_ne_visits: parseInt(Form.priorVisits) || 0,
