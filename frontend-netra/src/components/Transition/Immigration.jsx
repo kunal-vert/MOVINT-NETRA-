@@ -231,20 +231,23 @@ const Immigration = () => {
                             <select name="gender" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
                                 value={Form.gender}
                                 onChange={ChangeHandler}>
-                                 <option value=''>Select gender</option> 
+                                <option value=''>Select gender</option>
                                 <option value="Male">Male</option>
                                 <option value="Female">Female</option>
                                 <option value="Other">Other</option>
                             </select>
                         </div>
+
                         <div className='my-3'>
                             <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>criminal_record</h3>
-                            <select name="" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
-                                value={Form.criminal_record}
-                                onChange={ChangeHandler}>
 
-                                <option value="Male">True</option>
-                                <option value="Female">False</option>
+                            <select name="criminalRecord" className={`${selectClass} ${Error && !Form.gender ? ErrorInputClass : normalInputClass}`}
+
+                                value={Form.criminalRecord}
+                                onChange={ChangeHandler}>
+                                <option value=''>Select</option>
+                                <option value="True">True</option>
+                                <option value="False">False</option>
 
                             </select>
                         </div>
@@ -253,7 +256,7 @@ const Immigration = () => {
                             <h3 className='mx-1.5 text-gray-300 mb-1 text-sm uppercase tracking-wide'>DOB</h3>
                             <input
                                 type="date"
-                                name="DOB"
+                                name="dob"
                                 className={`${inputClass} ${Error && !Form.dob ? ErrorInputClass : normalInputClass}`}
                                 value={Form.dob}
                                 onChange={ChangeHandler}
@@ -266,6 +269,7 @@ const Immigration = () => {
                                 value={Form.visaType}
                                 onChange={ChangeHandler}>
 
+                                <option value=''>Select visa type</option>
                                 <option value="Tourist">Tourist</option>
                                 <option value="Business">Business</option>
                                 <option value="Student">Student</option>
@@ -282,7 +286,11 @@ const Immigration = () => {
                                 {/* ({Details.length}) */}
                             </h1>
 
-                            <button type="button" onClick={SubmitDeploy} className="p-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-sky-700 hover:scale-110 active:scale-95">
+                            <button
+                                type="button"
+                                onClick={SubmitDeploy}
+                                disabled={Loading}
+                                className="p-2 rounded-lg cursor-pointer transition-all duration-300 hover:bg-sky-700 hover:scale-110 active:scale-95">
                                 <img
                                     className="w-9 h-9 object-cover transition-transform duration-300 hover:-translate-y-1 hover:rotate-6"
                                     src="/Image/fighter-plane.png"
