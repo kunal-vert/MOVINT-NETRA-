@@ -11,6 +11,19 @@ import enLocale from 'i18n-iso-countries/langs/en.json'
 
 countries.registerLocale(enLocale) // This is avaiable in different lang so we have to edit what exactly we want lmfaooo:)
 
+const calculateVisaPermitDays = (expireyDate) => {
+    const expirey = new Date (expireyDate)
+    const today  = new Date()
+    today.setHours(0,0,0,0)
+    const ValidDays = expirey - today 
+    const days = Math.ceil(ValidDays/(1000 * 60 * 60 * 24))
+    return days 
+}
+
+
+
+
+
 
 const inputClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
 const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 text-white outline-none focus:border-violet-500 transition-colors"
