@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import Bagpack from '../../assets/Bagpack.svg'
-import ImmigrationRight from './NationalRiskCard'
+import NationalRiskCard from './NationalRiskCard'
 import api from '../../api/axiosClient'
 import countries from 'i18n-iso-countries'
 import enLocale from 'i18n-iso-countries/langs/en.json'
@@ -12,12 +12,12 @@ import enLocale from 'i18n-iso-countries/langs/en.json'
 countries.registerLocale(enLocale) // This is avaiable in different lang so we have to edit what exactly we want lmfaooo:)
 
 const calculateVisaPermitDays = (expireyDate) => {
-    const expirey = new Date (expireyDate)
-    const today  = new Date()
-    today.setHours(0,0,0,0)
-    const ValidDays = expirey - today 
-    const days = Math.ceil(ValidDays/(1000 * 60 * 60 * 24))
-    return days 
+    const expirey = new Date(expireyDate)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const ValidDays = expirey - today
+    const days = Math.ceil(ValidDays / (1000 * 60 * 60 * 24))
+    return days
 }
 
 
@@ -30,6 +30,8 @@ const selectClass = "w-full p-3 border border-gray-700 rounded-lg bg-slate-800 t
 
 const ErrorInputClass = "border-red-500"
 const normalInputClass = "border-gray-700"
+
+
 
 const EmptyForm = {
     passportNumber: '',
@@ -96,7 +98,7 @@ const Immigration = () => {
                 dob: Form.dob,
                 country_code: code,
                 occupation: Form.occupation,
-                criminal_record: Form.criminalRecord === true,
+                criminal_record: Form.criminalRecord === 'True',
                 prior_ne_visits: parseInt(Form.priorVisits) || 0,
                 visa_type: Form.visaType,
                 visa_permit_days: calculateVisaPermitDays(Form.passportExpiry),
@@ -185,7 +187,7 @@ const Immigration = () => {
                             <input
                                 type="text"
                                 name="nationality"
-                                placeholder="Enter your nationality"
+                                placeholder="e.g. China, India, United Kingdom"
                                 className={`${inputClass} ${Error && !Form.nationality.trim() ? ErrorInputClass : normalInputClass}`}
                                 value={Form.nationality}
                                 onChange={ChangeHandler}
