@@ -14,8 +14,9 @@ const riskColors = {
     },
 }
 
+// In future i have to explicity move to backend rather on frontend misery. LOOK MESSY :(
 
-const getDaysLeft = (expiryDateStr) => {
+const getDaysLeft = (expireyDateStr) => {
     if (!expireyDateStr) return null
     const expirey = new Date(expireyDateStr)
     const today = new Date()
@@ -31,11 +32,11 @@ const NationalRiskCard = ({ data }) => {
 
     // here we could've added the condition statement but we already have the compute value on backend so we aint need condition! bruhh :)
 
-    const ThreatLevel = getRiskLevel(score)
-    const risk = riskColors[ThreatLevel] || { bg: 'bg-gray-800 border-gray-700', text: 'text-gray-400' }
+    const ThreatLevelColor = data.risk_level
+    const risk = riskColors[ThreatLevelColor] || { bg: 'bg-gray-800 border-gray-700', text: 'text-gray-400' }
 
 
-    const daysLeft = getDaysLeft(data.visa_expirey)
+    const daysLeft = getDaysLeft(data.visa_expiry)
 
 
     return (
@@ -44,17 +45,19 @@ const NationalRiskCard = ({ data }) => {
             {/* Header */}
             <div className="flex flex-col gap-2">
                 <div className="flex items-center gap-4">
-                    <h1 className="text-2xl bg-gray-700 font-[font1] text-gray-500 rounded-[3px] px-2">
-                        {data.countryCode}
-                    </h1>
+                    {data.country_code && data.country_code !== 'N/A' && (
+                        <h1 className="text-2xl bg-gray-700 font-[font1] text-gray-500 rounded-[3px] px-2">
+                            {data.country_code}
+                        </h1>
 
+                    )}
                     <h1 className="text-2xl font-bold text-white">
-                        {data.fullName}
+                        {data.full_name}
                     </h1>
                 </div>
 
                 <div className="flex items-center gap-4 text-gray-500 text-2xl font-[font2]">
-                    <span>{data.passportNumber}</span>
+                    <span>{data.passport_id}</span>
                     <span>{data.nationality}</span>
                 </div>
             </div>
@@ -67,16 +70,16 @@ const NationalRiskCard = ({ data }) => {
 
                 <div className='flex items-center gap-x-2.5'>
                     <span className={`text-5xl font-bold ${risk.text}`}>
-                        {score}
+                        {data.risk_score}
                     </span>
 
                     <span className={`mx-2 text-3xl font-bold ${risk.text}`}>
-                        {data.riskLevel}
+                        {ThreatLevelColor}
                     </span>
                 </div>
 
                 <div className='my-7 border-2 text-gray-300 border-black w-fit px-1.5 bg-gray-700 rounded-full text-center'>
-                    <h1>{data.riskReason}</h1>
+                    <h1>{data.risk_reason}</h1>
                 </div>
             </div>
 
@@ -106,7 +109,7 @@ const NationalRiskCard = ({ data }) => {
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Visa Type</h2>
-                    <p className="font-semibold text-lg">{data.visaType}</p>
+                    <p className="font-semibold text-lg">{data.visa_type}</p>
                 </div>
 
                 <div>
@@ -119,7 +122,7 @@ const NationalRiskCard = ({ data }) => {
                     <p className="font-semibold text-lg">{data.reason_to_visit || "N/A"}</p>
                 </div>
 
-                 <div>
+                <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Visa Expiry</h2>
                     <p className="font-semibold text-lg text-yellow-400">
                         {data.visa_expiry || "N/A"}
@@ -131,19 +134,24 @@ const NationalRiskCard = ({ data }) => {
                     </p>
                 </div>
 
-                
+                <div>
+                    <h2 className="text-gray-500 uppercase tracking-wider text-sm">Criminal Record</h2>
+                    <p className={`font-semibold text-lg ${data.criminal_record ? 'text-red-400' : 'text-green-400'}`}>
+                        {data.criminal_record ? 'Yes' : 'No'}
+                    </p>
+                </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Overstay Flag</h2>
-                    <p className={`font-semibold text-lg mx-6 ${data.overstayFlag ? 'text-red-400' : 'text-green-400'}`}>
-                        {data.overstayFlag ? 'Yes' : 'No'}
+                    <p className={`font-semibold text-lg  ${data.overstayflag ? 'text-red-400' : 'text-green-400'}`}>
+                        {data.overstay_flag ? 'Yes' : 'No'}
                     </p>
                 </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Prior Visits</h2>
                     <p className="font-semibold text-lg text-orange-400">
-                        {data.priorVisits || "0"}
+                        {data.prior_ne_visits}
                     </p>
                 </div>
 
@@ -152,4 +160,4 @@ const NationalRiskCard = ({ data }) => {
     )
 }
 
-export default ImmigrationRight
+export default NationalRiskCard
