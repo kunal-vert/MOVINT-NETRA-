@@ -15,22 +15,27 @@ const riskColors = {
 }
 
 
+const getDaysLeft = (expiryDateStr) => {
+    if (!expireyDateStr) return null
+    const expirey = new Date(expireyDateStr)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    const diff = (expirey - today)
+    const val = Math.ceil(diff / (1000 * 60 * 60 * 24))
+    return val
+}
+
 
 
 const NationalRiskCard = ({ data }) => {
 
-    const score = data.riskScore || 0
-
-    const getRiskLevel = (score) => {
-        if (score > 90) return "HIGH";
-        if (score > 60) return "MEDIUM";
-        return "LOW";
-    };
-
+    // here we could've added the condition statement but we already have the compute value on backend so we aint need condition! bruhh :)
 
     const ThreatLevel = getRiskLevel(score)
-    const risk = riskColors[ThreatLevel]
+    const risk = riskColors[ThreatLevel] || { bg: 'bg-gray-800 border-gray-700', text: 'text-gray-400' }
 
+
+    const daysLeft = getDaysLeft(data.visa_expirey)
 
 
     return (
@@ -51,7 +56,7 @@ const NationalRiskCard = ({ data }) => {
                 <div className="flex items-center gap-4 text-gray-500 text-2xl font-[font2]">
                     <span>{data.passportNumber}</span>
                     <span>{data.nationality}</span>
-                           </div>
+                </div>
             </div>
 
             {/* Risk Box */}
@@ -87,6 +92,12 @@ const NationalRiskCard = ({ data }) => {
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Nationality</h2>
                     <p className="font-semibold text-lg">{data.nationality}</p>
                 </div>
+                <div>
+
+                    <h2 className="text-gray-500 uppercase tracking-wider text-sm">Gender</h2>
+                    <p className="font-semibold text-lg">{data.gender}</p>
+
+                </div>
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Date of Birth</h2>
@@ -108,12 +119,19 @@ const NationalRiskCard = ({ data }) => {
                     <p className="font-semibold text-lg">{data.reason_to_visit || "N/A"}</p>
                 </div>
 
-                <div>
-                    <h2 className="text-gray-500 uppercase tracking-wider text-sm">Passport Expiry</h2>
+                 <div>
+                    <h2 className="text-gray-500 uppercase tracking-wider text-sm">Visa Expiry</h2>
                     <p className="font-semibold text-lg text-yellow-400">
-                        {data.passportExpiry || "N/A"} ({data.daysLeft || "0"}d left)
+                        {data.visa_expiry || "N/A"}
+                        {daysLeft !== null && (
+                            daysLeft < 0
+                                ? <span className="text-red-500 font-bold"> — EXPIRED {Math.abs(daysLeft)}d ago</span>
+                                : <span> ({daysLeft}d left)</span>
+                        )}
                     </p>
                 </div>
+
+                
 
                 <div>
                     <h2 className="text-gray-500 uppercase tracking-wider text-sm">Overstay Flag</h2>
