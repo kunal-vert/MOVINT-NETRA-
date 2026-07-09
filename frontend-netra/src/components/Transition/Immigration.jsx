@@ -99,7 +99,7 @@ const Immigration = () => {
                 criminal_record: Form.criminalRecord === true,
                 prior_ne_visits: parseInt(Form.priorVisits) || 0,
                 visa_type: Form.visaType,
-                visa_permit_days: 30,
+                visa_permit_days: calculateVisaPermitDays(Form.passportExpiry),
                 visa_expiry: Form.passportExpiry,
                 reason_to_visit: Form.reasonToVisit
             })
