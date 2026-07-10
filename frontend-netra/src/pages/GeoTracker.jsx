@@ -1,4 +1,4 @@
-import LeafletMap from '../components/GeoTracker/LeafletMap'
+import LeafletMap from '../components/GeoTracker/TrackMap'
 import "../components/GeoTracker/Leaflet.theme.css";
 
 
