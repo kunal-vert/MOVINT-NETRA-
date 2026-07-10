@@ -9,6 +9,7 @@ import Immigration from './components/Transition/Immigration'
 import Checkpost from './components/Transition/Checkpost'
 import Borderguard from './components/Transition/Borderguard'
 import DeploymentLayout from './components/UI/DeploymentLayout'
+import PageNotFound from './components/UI/PageNotFound'
 
 const App = () => {
   return (
@@ -22,6 +23,7 @@ const App = () => {
           <Route path='/geo-tracker' element={<GeoTracker />} />
           <Route path='/nationals' element={<Nationals />} />
           <Route path='/alerts' element={<AlertsPanel />} />
+          <Route path='*' element={<PageNotFound />} />
 
           <Route element={<DeploymentLayout />}>
             <Route path='/deployment' element={<Deployment />} />
