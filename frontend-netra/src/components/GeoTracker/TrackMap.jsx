@@ -58,6 +58,21 @@ const TrackMap = () => {
   return (
     // 1. MapContainer: Yeh hamara Pizza Base (khali canvas) hai. 
     // Isme height dena bohot zaroori hai, warna map dikhega hi nahi!
+    <div>
+      <form action="">
+        <input type="text"
+        value={}
+        onChange={()=>setpassportInput(e.target.value)}
+        placeholder='Enter passport ID'
+        className='px-3 py-2 rounded-md bg-slate-800 text-white outline-none border border-gray-700 focus:border-violet-500 w-48'
+         />
+         <button type='submit'
+         disabled={loading}
+         className='px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-md font-semibold disabled:opacity-50'
+         >
+          {loading ? 'Locating...' : 'Track'}
+         </button>
+      </form>
     <MapContainer center={KOLKATA_ENTRY} zoom={14} style={{ height: "500px", width: "100%" }}>
 
       {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
@@ -77,6 +92,7 @@ const TrackMap = () => {
 
 
     </MapContainer>
+    </div>
   );
 };
 
