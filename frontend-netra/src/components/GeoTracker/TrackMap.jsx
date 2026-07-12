@@ -70,7 +70,7 @@ const TrackMap = () => {
       {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
 
       <Marker   >
-        <Popup className='text-2xl'>
+        <Popup className='text-2xl bg-green-300'>
 
         </Popup>
       </Marker>
