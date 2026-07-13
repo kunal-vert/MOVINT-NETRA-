@@ -47,7 +47,7 @@ const TrackMap = () => {
   const [trackedPassport, settrackedPassport] = useState(null)
   const [trailData, settrailData] = useState(null)
   const [loading, setloading] = useState(false)
-  const [Errors, setErrors] = useState('')
+  const [Errors, setError] = useState('')
 
 
 
@@ -61,37 +61,50 @@ const TrackMap = () => {
     <div>
       <form action="">
         <input type="text"
-        value={}
-        onChange={()=>setpassportInput(e.target.value)}
-        placeholder='Enter passport ID'
-        className='px-3 py-2 rounded-md bg-slate-800 text-white outline-none border border-gray-700 focus:border-violet-500 w-48'
-         />
-         <button type='submit'
-         disabled={loading}
-         className='px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-md font-semibold disabled:opacity-50'
-         >
+          value={ }
+          onChange={() => setpassportInput(e.target.value)}
+          placeholder='Enter passport ID'
+          className='px-3 py-2 rounded-md bg-slate-800 text-white outline-none border border-gray-700 focus:border-violet-500 w-48'
+        />
+        <button type='submit'
+          disabled={loading}
+          className='px-4 py-2 bg-violet-600 hover:bg-violet-700 text-white rounded-md font-semibold disabled:opacity-50'
+        >
           {loading ? 'Locating...' : 'Track'}
-         </button>
+        </button>
       </form>
-    <MapContainer center={KOLKATA_ENTRY} zoom={14} style={{ height: "500px", width: "100%" }}>
+      {Error && (<div className="absolute top-20 left-4 bg-red-700 text-white px-4 py-2 rounded-md text-sm max-w-xs">
+        {error}
+      </div>)}
 
-      {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
+      {trailData && (
+        <div className="absolute top-4 right-4  bg-gray-900/95 border border-gray-700 rounded-lg p-3 shadow-lg text-white">
+          <p className="font-bold">{trailData.full_name}</p>
+          <p className="text-sm text-gray-400">{trailData.passport_id}</p>
+          <p className="mt-1 font-semibold" style={{ color }}>
+            {trailData.risk_level} · {trailData.risk_score}
+          </p>
+        </div>
+      )}
+      <MapContainer center={KOLKATA_ENTRY} zoom={14} style={{ height: "500px", width: "100%" }}>
+
+        {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
       // Yeh URL internet se chote-chote map ke square images fetch karta hai. */}
-      <TileLayer
-        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        attribution='&copy; <a href="https://www.openstreetmap.org/copyright"></a> '
-      />
+        <TileLayer
+          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          attribution='&copy; <a href="https://www.openstreetmap.org/copyright"></a> '
+        />
 
-      {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
+        {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
 
-      <Marker   >
-        <Popup className='text-2xl bg-green-300'>
+        <Marker   >
+          <Popup className='text-2xl bg-green-300'>
 
-        </Popup>
-      </Marker>
+          </Popup>
+        </Marker>
 
 
-    </MapContainer>
+      </MapContainer>
     </div>
   );
 };
