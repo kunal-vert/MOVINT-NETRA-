@@ -1,5 +1,5 @@
 import React, { useRef, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
+import { MapContainer, TileLayer, Marker, Popup, useMap, CircleMarker } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // CSS import karna mat bhoolna!
 import './Leaflet.theme.css'
 import api from '../../api/axiosClient'
@@ -61,7 +61,7 @@ const TrackMap = () => {
     <div>
       <form action="">
         <input type="text"
-          value={ }
+          // value={ }
           onChange={() => setpassportInput(e.target.value)}
           placeholder='Enter passport ID'
           className='px-3 py-2 rounded-md bg-slate-800 text-white outline-none border border-gray-700 focus:border-violet-500 w-48'
@@ -74,7 +74,7 @@ const TrackMap = () => {
         </button>
       </form>
       {Error && (<div className="absolute top-20 left-4 bg-red-700 text-white px-4 py-2 rounded-md text-sm max-w-xs">
-        {error}
+        {Error}
       </div>)}
 
       {trailData && (
@@ -95,16 +95,18 @@ const TrackMap = () => {
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright"></a> '
         />
 
-         <FitToTrail points={allPoints} passportId={trailData?.passport_id ?? null} />
-         <Polyline positions={polylinePositions} pathOptions={{ color, weight: 3, dashArray: '6 6' }} />
+        <FitToTrail points={allPoints} passportId={trailData?.passport_id ?? null} />
+        <Polyline positions={polylinePositions} pathOptions={{ color, weight: 3, dashArray: '6 6' }} />
 
         {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
 
-        <Marker   >
-          <Popup className='text-2xl bg-green-300'>
-
+        <CircleMarker>
+          <Popup>
+            <div>
+              <p>location</p>
+            </div>
           </Popup>
-        </Marker>
+        </CircleMarker>
 
 
       </MapContainer>
