@@ -86,7 +86,7 @@ const TrackMap = () => {
           </p>
         </div>
       )}
-      <MapContainer center={KOLKATA_ENTRY} zoom={14} style={{ height: "500px", width: "100%" }}>
+      <MapContainer center={KOLKATA_ENTRY} zoom={7} style={{ height: "500px", width: "100%" }}>
 
         {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
       // Yeh URL internet se chote-chote map ke square images fetch karta hai. */}
@@ -94,6 +94,9 @@ const TrackMap = () => {
           url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
           attribution='&copy; <a href="https://www.openstreetmap.org/copyright"></a> '
         />
+
+         <FitToTrail points={allPoints} passportId={trailData?.passport_id ?? null} />
+         <Polyline positions={polylinePositions} pathOptions={{ color, weight: 3, dashArray: '6 6' }} />
 
         {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
 
