@@ -85,8 +85,34 @@ const TrackMap = () => {
   }
 
 
+  useEffect(() => {
+    if (!trackedPassport) return
+    const intervalId = setInterval(() => {
+      fetchTrail(trackedPassport, { silent: true })
+    }, POLL_INTERVAL_MS)
+    return () => clearInterval(intervalId)
+  }, [trackedPassport, fetchTrail])
 
 
+  const entryPoint = useMemo(() => ({
+    id: 'entry',
+    lat: KOLKATA_ENTRY[0],
+    lng: KOLKATA_ENTRY[1],
+    operator_type: 'IMMIGRATION',
+
+    location: 'Entry — Kolkata Airport (assumed, not backend-verified)',
+    delay_days: 0,
+    notes: null,
+    timestamp: null
+  }), [])
+
+
+  const allPoints = useMemo(() => {
+    return trailData ? [entryPoint, ...trailData.trail] : [entryPoint]
+  }, [trailData, entryPoint])
+
+  const polylinePositions = allPoints.map(p => [p.lat, p.lng])
+  const color = getRiskColor(trailData?.risk_level)
 
 
   // As default aaha hum Netaji Subhas chandra Airport International Airport ke coordinates (Latitude, Longitude)
