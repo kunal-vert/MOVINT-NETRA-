@@ -1,6 +1,35 @@
 import React from "react";
 
+
+
+
+const NE_STATE_COORDS = {
+  Assam: [26.2006, 92.9376],
+  Meghalaya: [25.4670, 91.3662],
+  Manipur: [24.6637, 93.9063],
+  Nagaland: [26.1584, 94.5624],
+  Tripura: [23.9408, 91.9882],
+  "Arunachal Pradesh": [28.2180, 94.7278],
+  Mizoram: [23.1645, 92.9376],
+  Sikkim: [27.5330, 88.5122],
+};
+
+const EmptyForm = { passportId: "", state: "", delayDays: "", issues: "" };
+
+
+
+
+
 const Borderguard = () => {
+
+
+  const [Form, setForm] = useState(EmptyForm);
+  const [Error, setError] = useState("");
+  const [Result, setResult] = useState(null);
+  const [Loading, setLoading] = useState(false);
+
+
+
   return (
     <div className="flex justify-center min-h-screen bg-gray-700 py-8 px-4 ">
 
