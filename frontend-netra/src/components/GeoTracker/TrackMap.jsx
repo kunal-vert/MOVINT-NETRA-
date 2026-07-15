@@ -121,11 +121,14 @@ const TrackMap = () => {
   return (
     // 1. MapContainer: Yeh hamara Pizza Base (khali canvas) hai. 
     // Isme height dena bohot zaroori hai, warna map dikhega hi nahi!
-    <div>
-      <form action="">
+    <div className="relative w-full h-[80vh]">
+      <form
+        onSubmit={handleSearch}
+        className="absolute top-4 left-4  bg-gray-900/95 border border-gray-700 rounded-lg p-3 flex gap-2 shadow-lg"
+      >
         <input type="text"
-          // value={ }
-          onChange={() => setpassportInput(e.target.value)}
+          value={passportInput}
+          onChange={(e) => setpassportInput(e.target.value)}
           placeholder='Enter passport ID'
           className='px-3 py-2 rounded-md bg-slate-800 text-white outline-none border border-gray-700 focus:border-violet-500 w-48'
         />
@@ -163,15 +166,24 @@ const TrackMap = () => {
 
         {/* // 3. Marker & Popup: Yeh hamari Topping hai. */}
 
-        <CircleMarker>
-          <Popup>
-            <div>
-              <p>location</p>
-            </div>
-          </Popup>
-        </CircleMarker>
 
-
+        {allPoints.map((p) => (
+          <CircleMarker
+            key={p.id}
+            center={[p.lat, p.lng]}
+            radius={10}
+            pathOptions={{ fillColor: color, color: '#111827', fillOpacity: 0.85, weight: 2 }}
+          >
+            <Popup>
+              <div>
+                <p className="font-bold">{p.location || p.operator_type}</p>
+                {p.timestamp && <p className="text-xs">{new Date(p.timestamp).toLocaleString()}</p>}
+                {p.delay_days > 0 && <p className="text-xs">Delay: {p.delay_days}d</p>}
+                {p.notes && <p className="text-xs mt-1">{p.notes}</p>}
+              </div>
+            </Popup>
+          </CircleMarker>
+        ))}
       </MapContainer>
     </div>
   );
