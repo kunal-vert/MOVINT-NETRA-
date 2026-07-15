@@ -20,7 +20,7 @@ const RISK_COLOR = {
 const getRiskColor = (level) => RISK_COLOR[level] || '#6b7280'
 
 function FitToTrail({ points, passportId }) {
-  const map = useMap
+  const map = useMap()
 
 
   const lastFitRef = useRef(null)
@@ -48,6 +48,43 @@ const TrackMap = () => {
   const [trailData, settrailData] = useState(null)
   const [loading, setloading] = useState(false)
   const [Errors, setError] = useState('')
+
+
+  const fetchTrail = useCallback(async (passportId, { silent = false } = {}) => {
+    if (!passportId) return
+    if (!silent) {
+      setLoading(true)
+      setError('')
+    }
+
+    try {
+      const res = await api.get(`/api/location/trail/${encodeURIComponent(passportId)}`)
+      setTrailData(res.data)
+    } catch (err) {
+      if (!silent) {
+        if (err.response) {
+          setError(err.response.data?.detail || 'National not found')
+        } else if (err.request) {
+          setError('Could not reach MOVINT backend — is the server running?')
+        } else {
+          setError('Unexpected error occurred')
+        }
+        setTrailData(null)
+      }
+    } finally {
+      if (!silent) setLoading(false)
+    }
+  }, [])
+
+  const handleSearch = (e) => {
+    e.preventDefault()
+    const id = passportInput.trim()
+    if (!id) return
+    setTrackedPassport(id)
+    fetchTrail(id)
+  }
+
+
 
 
 
