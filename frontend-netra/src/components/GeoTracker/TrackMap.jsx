@@ -1,5 +1,5 @@
-import React, { useRef, useState } from 'react';
-import { MapContainer, TileLayer, Marker, Popup, useMap, CircleMarker } from 'react-leaflet';
+import React, { useRef, useState, useEffect, useCallback, useMemo } from 'react';
+import { MapContainer, TileLayer, Marker, Popup, useMap, CircleMarker, Polyline } from 'react-leaflet';
 import 'leaflet/dist/leaflet.css'; // CSS import karna mat bhoolna!
 import './Leaflet.theme.css'
 import api from '../../api/axiosClient'
@@ -43,11 +43,11 @@ function FitToTrail({ points, passportId }) {
 
 
 const TrackMap = () => {
-  const [passportInput, setpassportInput] = useState('')
-  const [trackedPassport, settrackedPassport] = useState(null)
-  const [trailData, settrailData] = useState(null)
-  const [loading, setloading] = useState(false)
-  const [Errors, setError] = useState('')
+  const [passportInput, setPassportInput] = useState('')
+  const [trackedPassport, setTrackedPassport] = useState(null)
+  const [trailData, setTrailData] = useState(null)
+  const [loading, setLoading] = useState(false)
+  const [error, setError] = useState('')
 
 
   const fetchTrail = useCallback(async (passportId, { silent = false } = {}) => {
@@ -128,7 +128,7 @@ const TrackMap = () => {
       >
         <input type="text"
           value={passportInput}
-          onChange={(e) => setpassportInput(e.target.value)}
+          onChange={(e) => setPassportInput(e.target.value)}
           placeholder='Enter passport ID'
           className='px-3 py-2 rounded-md bg-slate-800 text-white outline-none border border-gray-700 focus:border-violet-500 w-48'
         />
@@ -139,8 +139,8 @@ const TrackMap = () => {
           {loading ? 'Locating...' : 'Track'}
         </button>
       </form>
-      {Error && (<div className="absolute top-20 left-4 bg-red-700 text-white px-4 py-2 rounded-md text-sm max-w-xs">
-        {Error}
+      {error && (<div className="absolute top-20 left-4 bg-red-700 text-white px-4 py-2 rounded-md text-sm max-w-xs">
+        {error}
       </div>)}
 
       {trailData && (
@@ -152,7 +152,7 @@ const TrackMap = () => {
           </p>
         </div>
       )}
-      <MapContainer center={KOLKATA_ENTRY} zoom={7} style={{ height: "500px", width: "100%" }}>
+      <MapContainer center={KOLKATA_ENTRY} zoom={7} style={{ height: "100%", width: "100%" }}>
 
         {/* // 2. TileLayer: Yeh hamari Pizza Sauce hai. 
       // Yeh URL internet se chote-chote map ke square images fetch karta hai. */}
