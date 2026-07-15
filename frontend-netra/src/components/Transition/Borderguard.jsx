@@ -29,6 +29,51 @@ const Borderguard = () => {
   const [Loading, setLoading] = useState(false);
 
 
+  const handleChange = (e) => {
+    const { name, value } = e.target;
+    setForm({ ...Form, [name]: value });
+    setError("");
+  };
+
+   const handleSubmit = async () => {
+    if (!Form.passportId.trim() || !Form.state) {
+      setError("Passport ID and State are required");
+      return;
+    }
+
+    const [lat, lng] = NE_STATE_COORDS[Form.state];
+
+    setLoading(true);
+    setError("");
+    setResult(null);
+
+
+    try {
+      const response = await api.post("/api/location/ping", {
+        passport_id: Form.passportId,
+        operator_type: "BORDER",
+        state: Form.state,
+        lat,
+        lng,
+        delay_days: parseInt(Form.delayDays) || 0,
+        notes: Form.issues.trim() || null,
+      });
+
+      setResult(response.data);
+      setForm(EmptyForm);
+
+      } catch (err) {
+      if (err.response) {
+        setError(err.response.data?.detail || "Ping failed");
+      } else if (err.request) {
+        setError("Could not reach MOVINT backend — is the server running?");
+      } else {
+        setError("Unexpected error occurred");
+      }
+    } finally {
+      setLoading(false);
+    }
+  };
 
   return (
     <div className="flex justify-center min-h-screen bg-gray-700 py-8 px-4 ">
